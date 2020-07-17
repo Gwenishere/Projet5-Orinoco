@@ -8,18 +8,19 @@ body {
 	border: 0;
 }
 header {
-    background-color:rgb(243, 233, 241);
-    padding-top: 30px;
-    padding-bottom: 30px;
+    background-color:rgb(204, 183, 174);
+    padding-bottom: 20px;
+    padding-top: 20px;
     margin: 0;
- 
+    width: 100%;
+    
 }
-h1 {
-    text-align: center;
-    color: #212121;
+header img {
+ width: auto;
+ height: auto;
 }
 h1:before {
-    background-image: url("../img/banniere.png");
+   /* background-image: url("../img/banniere.png");*/
     background-size: 75%;
     padding: 20px 100px;
     margin-right: 40px;
@@ -53,12 +54,12 @@ nav label{
     width: 100%;
     padding: 10px 0px;
     text-align: center;
-    background-color:rgb(243, 233, 241);
+    background-color:rgb(133, 113, 119);
 }
 nav ul{
     display: none;
     list-style-type: none;
-    background-color: #a08ab4;
+    background-color: rgb(133, 113, 119);
 }
 nav input[type=checkbox]:checked + ul{
     display: flex;
@@ -76,10 +77,11 @@ nav a{
     text-decoration: none;
     color: black;
     padding: 10px 0px;
+    text-align: center;
 }
 nav a:hover{
-    color: rgb(117, 12, 96);
-    background-color: rgb(243, 233, 241);
+    color: rgb(214, 207, 203);
+    background-color: rgb(133, 113, 119);
 }
 .sous{
     display: flex;
@@ -93,7 +95,7 @@ nav a:hover{
 }
 .sous a{
     padding: 10px;
-    background-color: rgb(243, 233, 241);
+    background-color: rgb(214, 207, 203);
 }
 
 .conteneur-contenu{
@@ -104,48 +106,49 @@ img {
     height: 200px;
     width: 200px;
     margin: 30px;
-    border-radius: 3px;
 }
-footer {
-    font-size: 14px;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    background-color:#6d5e7ac5;
-}
-/* /* Slideshow container */
-.slideshow-container {
+/* container */
+.container {
     margin: auto;
     margin-top: 60px;
     margin-bottom: 30px;
     width: 60%;
   }
-   footer div {
+.element {
+    margin-bottom: 30px!important;
+    margin: auto;
+    padding: 10px;
     text-align: center;
-  }
-  /* Hide the images by default */
- /*  .mySlides {
-    display: none;
-  }
-/* Fading animation */
-/* .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-  
-  @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }  */
+    width: 60%;
+    box-shadow: 2px 3px 3px 2px rgb(204, 183, 174);
+    border-radius: 3px;
+}
 
+
+.button {
+    background-color: rgb(204, 183, 174);
+    color: rgb(78, 74, 76);
+    font-size: 15px;
+    padding: 10px 24px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  footer {
+    font-size: 14px;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: rgb(204, 183, 174);
+}
+footer div {
+    text-align: center;
+}
   @media screen and (min-width: 980px){
     .conteneur-nav{
         position: static;
@@ -169,8 +172,8 @@ footer {
         border-bottom: 2px solid transparent;
     }
     nav a:hover{
-        color: rgb(82, 9, 67);
-        border-bottom: 2px solid rgb(243, 233, 241);
+        color: rgb(214, 207, 203);
+        border-bottom: 2px solid rgb(133, 113, 119);
     }
     .sous{
         display: none;
@@ -189,7 +192,7 @@ footer {
     }
     .sous a:hover{
         border-bottom: none;
-        background-color: rgb(243, 233, 241);
+        background-color: rgb(133, 113, 119);
     }
     .deroulant > a::after{
         content:" ▼";
