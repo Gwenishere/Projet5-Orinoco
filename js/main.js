@@ -1,24 +1,24 @@
    let b = document.body;
-   let cardHeader = document.createElement('header');
-   let cardHeaderTitle = document.createElement('a');
-   let cardHeaderImg = document.createElement('img');
+   let pageHeader = document.createElement('header');
+   let pageHeaderTitle = document.createElement('a');
+   let pageHeaderImg = document.createElement('img');
    let cardSection = document.createElement('main');
-   let PageFooter = document.createElement('footer');
-   let PageFooterDiv = document.createElement('div');
-   let PageFooterText = document.createElement('p');
+   let pageFooter = document.createElement('footer');
+   let pageFooterDiv = document.createElement('div');
+   let pageFooterText = document.createElement('p');
 
    b.appendChild(cardSection);
-   document.body.prepend(cardHeader);
-   cardHeader.prepend(cardHeaderTitle);
-   cardHeaderTitle.prepend(cardHeaderImg);
-   document.body.appendChild(PageFooter);
-   PageFooter.prepend(PageFooterDiv);
-   PageFooterDiv.prepend(PageFooterText);
+   document.body.prepend(pageHeader);
+   pageHeader.prepend(pageHeaderTitle);
+   pageHeaderTitle.prepend(pageHeaderImg);
+   document.body.appendChild(pageFooter);
+   pageFooter.prepend(pageFooterDiv);
+   pageFooterDiv.prepend(pageFooterText);
    
-   cardHeaderTitle.setAttribute('href', '../html/main.html');
-   cardHeaderImg.src = '../img/banniere.png';
+   pageHeaderTitle.setAttribute('href', '../html/main.html');
+   pageHeaderImg.src = '../img/banniere.png';
    cardSection.className = 'container';
-   PageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
+   pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
  // utilisation d'une fonction then pour exécuter du code, c'est une promesse
 
  fetch ('http://localhost:3000/api/furniture').then(response =>
@@ -30,8 +30,7 @@
          let cardId = [];
          let cardDescription = [];
          let cardClick = []; 
-         // boucle pour exécuter et attribuer
-         // la div englobe les éléments du fichier source
+// création des éléments
          for (var i = 0; i < response.length; i++) {
            cardDiv.push(document.createElement('div'));
            cardTitle.push(document.createElement('h2'));
@@ -53,8 +52,10 @@
            cardDescription[i].textContent = 'Description : ' + response[i].description;
            cardClick[i].textContent = 'Découvrez le meuble';
 
+// attribut
            cardImg[i].setAttribute('alt', 'meuble en bois');
-           cardClick[i].setAttribute('href', '../html/produit.html');
+           cardClick[i].setAttribute('href', '../html/produit.html?id' + response[i]._id);
+//class
            cardDiv[i].className = 'element';
            cardClick[i].className = 'button';
           }
