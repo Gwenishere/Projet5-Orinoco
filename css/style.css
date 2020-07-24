@@ -10,7 +10,6 @@ body {
 header {
     background-color:rgb(204, 183, 174);
     padding-bottom: 20px;
-    padding-top: 20px;
     margin: 0;
     width: 100%;
     
@@ -19,15 +18,16 @@ header img {
  width: auto;
  height: auto;
 }
-h1:before {
-   /* background-image: url("../img/banniere.png");*/
-    background-size: 75%;
-    padding: 20px 100px;
-    margin-right: 40px;
-    content: " ";
-    text-align: center;
+
+
+h1 {
+    margin: 0 0 0 30px;
 }
 
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
 /*Reset CSS*/
 *{
     margin: 0px;
@@ -40,7 +40,7 @@ nav{
     background-color: white;
     position: sticky;
     top: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .conteneur-nav{
     position: absolute;
@@ -107,6 +107,17 @@ img {
     width: 200px;
     margin: 30px;
 }
+.photo {
+    overflow: hidden;
+    transition: transform .5s ease;
+}
+.photo:hover {
+    transform: scale(1.5);
+    cursor: zoom-in;
+}
+p {
+    margin-bottom: 30px;
+}
 /* container */
 .container {
     margin: auto;
@@ -123,9 +134,11 @@ img {
     box-shadow: 2px 3px 3px 2px rgb(204, 183, 174);
     border-radius: 3px;
 }
+ .element:hover {
+    border: 1px solid #777; 
+ }
 
-
-.button {
+.buttonShow {
     background-color: rgb(204, 183, 174);
     color: rgb(78, 74, 76);
     font-size: 15px;
@@ -134,10 +147,13 @@ img {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 4px 2px;
+    margin: 8px 2px;
     cursor: pointer;
   }
-
+.buttonShow:hover {
+    border: 1px solid #777;
+}
+ 
   footer {
     font-size: 14px;
     bottom: 0;
