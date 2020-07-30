@@ -48,7 +48,18 @@ response.json()).then(response => {
          let cardList = document.createElement('select');
          let cardListLabel = document.createElement('label');
          let cardListOption = [];
-             
+         let cardQuantity = document.createElement('div');
+         let quantityText = document.createElement('p');
+         let quantityInputs = document.createElement('input');
+         let priceElement = document.createElement('div');
+         let priceText = document.createElement('p');
+         let priceAmount = document.createElement('p');
+         let cartButtons = document.createElement('div');
+         let addToCartButtons = document.createElement('button');
+         let removeCartItemButtons = document.createElement('button');
+         let purchaseClicked = document.createElement('a');
+
+    
  // création des noeuds, arbre 
           cardSection.appendChild(cardDiv);
           cardDiv.appendChild(cardTitle);
@@ -57,22 +68,55 @@ response.json()).then(response => {
           cardDiv.appendChild(cardDescription);
           cardDiv.appendChild(cardListLabel);
           cardDiv.appendChild(cardList);
+          cardDiv.appendChild(cardQuantity);
+          cardQuantity.appendChild(quantityText);
+          cardQuantity.appendChild(quantityInputs);
+          cardDiv.appendChild(priceElement);
+          priceElement.appendChild(priceText);
+          priceElement.appendChild(priceAmount);
+          cardDiv.appendChild(cartButtons);
+          cartButtons.appendChild(addToCartButtons);
+          cartButtons.appendChild(removeCartItemButtons);
+          cardDiv.appendChild(purchaseClicked);
 
 // récupération et insertion des données
          cardTitle.textContent = response.name + ' - ' + response.price/100 + ' € TTC';
          cardImg.src = response.imageUrl;
          cardId.textContent = 'Ref article : ' + response._id;
          cardDescription.textContent = 'Description : ' + response.description;
-         cardListLabel.textContent = 'Choisissez un vernis : ' ;
+         cardListLabel.textContent = 'Sélectionnez le vernis : ';
+         quantityText.textContent = 'Quantité : ';
+         priceText.textContent = 'Montant total : ';
+         priceAmount.textContent = response.price/100 + ' €'; 
+         addToCartButtons.textContent = 'AJOUTER AU PANIER';
+         removeCartItemButtons.textContent = 'ENLEVER DU PANIER';
+         purchaseClicked.textContent = 'ACHETER';
+
+    
 // attribut
          cardImg.setAttribute('alt', 'meuble en bois');
          cardListLabel.setAttribute('for', 'vernis');
+         quantityInputs.setAttribute('type', 'number');
+         quantityInputs.setAttribute('value', 1);
+         addToCartButtons.setAttribute('value', 'Add');
+         removeCartItemButtons.setAttribute('type', 'button');
+         purchaseClicked.setAttribute('href', '../html/panier.html');
 // class
          cardDiv.className = 'element';
          cardImg.className = 'photo';
+         cardQuantity.className = 'quantity';
+         quantityInputs.className = 'cart-quantity-input';
+         priceAmount.className = 'cart-amount-price';
+         cartButtons.className = 'shop-buttons';
+         addToCartButtons.className = 'shop-item-button';
+         removeCartItemButtons.className = 'btn-danger';
+         purchaseClicked.className = 'btn-purchase';
 
 // id
          cardList.id = 'vernis';
+
+         
+        addToCartButtons.addEventListener('click', ()=>{addTo();}); //!!!pas ok
 
 // boucle récupère les données du tableau varnish         
          for (let i = 0; i < response.varnish.length; i++) {
@@ -84,17 +128,36 @@ response.json()).then(response => {
                    cardListOption[i].textContent = response.varnish[i];
                 // attributs, récupère le nom du vernis
                    cardListOption[i].setAttribute('value', response.varnish[i]);
-         }
-// boutons plus moins   avec récupération du prix selon id  et multiplier par le nombre
-// local storage cf doc reçue     
-// bouton add to cart récup de l'id cf page main
-    /*     let buttonAddToCart = response._id;
-         AddToCart.addEventListener('click', () => {
-         localStorage.setItem('id', buttonAddToCart);
-         }) */
 
+         }
+
+         function addTo() {
+         	let msgAlert = document.createElement('p');
+         	msgAlert.textContent = 'le meuble : ' + response.name + ' a été ajouté à votre panier';
+         	cardDiv.appendChild(msgAlert);
+            priceAmount.textContent = ((response.price/100)*(++quantityInputs.value)) + '€' ;
+
+         }
+
+        function updateCartTotal() {
+            for (var i = 0; i < quantityInputs.length; i++) {
+
+                total = total + (response.price * quantityInputs)
+            }
+            total = Math.round(total * 100) / 100
+
+        }
 })
 
+
+// boutons plus moins   avec récupération du prix selon id  et multiplier par le nombre
+// local storage cf doc reçue     
+// bouton add to cart récup de l'id cf page main et 
+// qui écoutera ce qu'il y a dans input
+/*         let buttonAddToCart = response._id;
+           addToCartBtn.addEventListener('click', () => {
+           localStorage.setItem('id', buttonAddToCart);
+           }) */
 
 
 

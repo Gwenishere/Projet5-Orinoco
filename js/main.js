@@ -46,6 +46,7 @@ pageHeaderElement.id = 'logo';
          let cardImg = [];
          let cardId = [];
          let cardDescription = [];
+		 let cardPrice = [];
          let cardSeeMoreClick = []; 
 // création des éléments
          for (var i = 0; i < response.length; i++) {
@@ -54,6 +55,7 @@ pageHeaderElement.id = 'logo';
            cardImg.push(document.createElement('img'));
            cardId.push(document.createElement('figcaption'));
            cardDescription.push(document.createElement('p'));
+		   cardPrice.push(document.createElement('p'));
            cardSeeMoreClick.push(document.createElement('a'));
 // noeuds
            cardSection.appendChild(cardDiv[i]);
@@ -61,12 +63,14 @@ pageHeaderElement.id = 'logo';
            cardDiv[i].appendChild(cardImg[i]);
            cardDiv[i].appendChild(cardId[i]);
            cardDiv[i].appendChild(cardDescription[i]);
+		   cardDiv[i].appendChild(cardPrice[i]);
            cardDiv[i].appendChild(cardSeeMoreClick[i]);
 // contenu
-           cardTitle[i].textContent = response[i].name + ' - ' + response[i].price/100 + ' € TTC';
+           cardTitle[i].textContent = response[i].name;
            cardImg[i].src = response[i].imageUrl;
            cardId[i].textContent = 'Ref article : ' + response[i]._id;
            cardDescription[i].textContent = 'Description : ' + response[i].description;
+		   cardPrice[i].textContent = 'Prix : ' + response[i].price/100 + ' € TTC';
            cardSeeMoreClick[i].textContent = 'Découvrez le meuble';
 // attribut
            cardImg[i].setAttribute('alt', 'meuble en bois');
@@ -80,6 +84,6 @@ pageHeaderElement.id = 'logo';
            localStorage.setItem('id', buttonLink);
            })
           }
-  })
+})
 
 

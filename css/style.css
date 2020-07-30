@@ -154,9 +154,9 @@ p {
     border: 1px solid #777;
 }
  
-  footer {
+footer {
     font-size: 14px;
-    bottom: 0;
+    margin: 0;
     width: 100%;
     height: 60px;
     line-height: 60px;
@@ -164,6 +164,10 @@ p {
 }
 footer div {
     text-align: center;
+}
+
+footer p {
+    margin-bottom: 0;
 }
   @media screen and (min-width: 980px){
     .conteneur-nav{
@@ -216,3 +220,86 @@ footer div {
     }
 }
 
+/*produits boutons plus et moins*/
+
+.quantity {
+    padding-top: 20px;
+    margin-bottom: 30px;
+  }
+  .cart-quantity-input {
+    height: 40px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid rgb(78, 74, 76);
+    background-color: #eee;
+    color: #333;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+    margin-right: 25px;
+  }
+/*div boutons*/
+.shop-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+  button[class*=btn] {
+    border: none;
+    cursor: pointer;
+  }
+button:hover {
+    background-color: rgb(78, 74, 76); 
+    color: white;
+    font-weight: bold;
+  }
+/*ajouter*/
+.shop-item-button {
+    margin: 40px auto 80px auto;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    background-color: rgb(96, 236, 154);
+    display: inline-block;
+}
+.shop-item-button:hover {
+    background-color: rgb(78, 74, 76);
+    color: white;
+}
+/*enlever*/
+.btn-danger {
+    color: #43484D;
+    background-color: #ec8686;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin: 40px auto 80px auto;
+    padding: 8px 12px;
+    display: inline-block;
+}
+.btn-danger:hover {
+    background-color: rgb(78, 74, 76);
+    color: white;
+}
+/*acheter*/
+.btn-purchase {
+    width: 50%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    background-color: rgb(61, 183, 231);
+    color: #43484D;
+    font-weight: bold;
+    font-size: 15px;
+    display: block;
+    cursor: pointer;
+    margin: 40px auto 80px auto;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn-purchase:hover {
+    background-color: rgb(78, 74, 76);
+    color: white;
+}
