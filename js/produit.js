@@ -6,7 +6,7 @@ let pageHeaderLink = document.createElement('a');
 let pageHeaderLogo = document.createElement('img');
 let pageHeaderTitle = document.createElement('h1');
 let cardSection = document.createElement('main');
-let cardSectionTitle = document.createElement('h2');
+let sectionTitle = document.createElement('h2');
 let pageFooter = document.createElement('footer');
 let pageFooterDiv = document.createElement('div');
 let pageFooterText = document.createElement('p');
@@ -18,14 +18,14 @@ pageHeaderElement.prepend(pageHeaderLink);
 pageHeaderLink.prepend(pageHeaderLogo);
 pageHeaderElement.append(pageHeaderTitle);
 b.appendChild(cardSection);
-cardSection.prepend(cardSectionTitle);
+cardSection.prepend(sectionTitle);
 document.body.appendChild(pageFooter);
 pageFooter.prepend(pageFooterDiv);
 pageFooterDiv.prepend(pageFooterText);
 // contenu
 pageHeaderLogo.src = '../img/banniere.png';
 pageHeaderTitle.textContent = "Des meubles d'exception";
-cardSectionTitle.textContent = 'Voici le produit que vous avez sélectionné';
+sectionTitle.textContent = 'Voici le produit que vous avez sélectionné';
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné';
 // attribut
 pageHeaderLink.setAttribute('href', '../html/main.html');
@@ -40,124 +40,105 @@ fetch ('http://localhost:3000/api/furniture/'+ localStorage.getItem('id')).then(
 response.json()).then(response => {
 
 // création des éléments          
-         let cardDiv = document.createElement('div');
-         let cardTitle = document.createElement('h3');
-         let cardImg = document.createElement('img');
-         let cardId = document.createElement('figcaption');
-         let cardDescription = document.createElement('p');
-         let cardList = document.createElement('select');
-         let cardListLabel = document.createElement('label');
-         let cardListOption = [];
-         let cardQuantity = document.createElement('div');
+         let productDiv = document.createElement('div');
+         let productTitle = document.createElement('h3');
+         let productPicture = document.createElement('img');
+         let productId = document.createElement('figcaption');
+         let productDescription = document.createElement('p');
+         let productList = document.createElement('select');
+         let productListLabel = document.createElement('label');
+         let productListOption = [];
+         let productQuantity = document.createElement('div');
          let quantityText = document.createElement('p');
          let quantityInputs = document.createElement('input');
          let priceElement = document.createElement('div');
          let priceText = document.createElement('p');
          let priceAmount = document.createElement('p');
          let cartButtons = document.createElement('div');
-         let addToCartButtons = document.createElement('button');
-         let removeCartItemButtons = document.createElement('button');
-         let purchaseClicked = document.createElement('a');
-
+         let addToCartButton = document.createElement('button');
+         let returnButton = document.createElement('a');
     
  // création des noeuds, arbre 
-          cardSection.appendChild(cardDiv);
-          cardDiv.appendChild(cardTitle);
-          cardDiv.appendChild(cardImg);
-          cardDiv.appendChild(cardId);
-          cardDiv.appendChild(cardDescription);
-          cardDiv.appendChild(cardListLabel);
-          cardDiv.appendChild(cardList);
-          cardDiv.appendChild(cardQuantity);
-          cardQuantity.appendChild(quantityText);
-          cardQuantity.appendChild(quantityInputs);
-          cardDiv.appendChild(priceElement);
+          cardSection.appendChild(productDiv);
+          productDiv.appendChild(productTitle);
+          productDiv.appendChild(productPicture);
+          productDiv.appendChild(productId);
+          productDiv.appendChild(productDescription);
+          productDiv.appendChild(productListLabel);
+          productDiv.appendChild(productList);
+          productDiv.appendChild(productQuantity);
+          productQuantity.appendChild(quantityText);
+          productQuantity.appendChild(quantityInputs);
+          productDiv.appendChild(priceElement);
           priceElement.appendChild(priceText);
           priceElement.appendChild(priceAmount);
-          cardDiv.appendChild(cartButtons);
-          cartButtons.appendChild(addToCartButtons);
-          cartButtons.appendChild(removeCartItemButtons);
-          cardDiv.appendChild(purchaseClicked);
-
+          productDiv.appendChild(cartButtons);
+          cartButtons.appendChild(returnButton);
+          cartButtons.appendChild(addToCartButton);
+     
 // récupération et insertion des données
-         cardTitle.textContent = response.name + ' - ' + response.price/100 + ' € TTC';
-         cardImg.src = response.imageUrl;
-         cardId.textContent = 'Ref article : ' + response._id;
-         cardDescription.textContent = 'Description : ' + response.description;
-         cardListLabel.textContent = 'Sélectionnez le vernis : ';
-         quantityText.textContent = 'Quantité : ';
+         productTitle.textContent = response.name + ' - ' + response.price/100 + ' € TTC';
+         productPicture.src = response.imageUrl;
+         productId.textContent = 'Ref article : ' + response._id;
+         productDescription.textContent = 'Description : ' + response.description;
+         productListLabel.textContent = 'Sélectionnez le vernis : ';
+         quantityText.textContent = 'Sélectionnez ou inscrire la quantité : ';
          priceText.textContent = 'Montant total : ';
-         priceAmount.textContent = response.price/100 + ' €'; 
-         addToCartButtons.textContent = 'AJOUTER AU PANIER';
-         removeCartItemButtons.textContent = 'ENLEVER DU PANIER';
-         purchaseClicked.textContent = 'ACHETER';
-
-    
+         priceAmount.textContent = response.price/100 + ' €';
+         returnButton.textContent = "RETOUR A L'ACCUEIL"
+         addToCartButton.textContent = ' AJOUTER AU PANIER'; 
 // attribut
-         cardImg.setAttribute('alt', 'meuble en bois');
-         cardListLabel.setAttribute('for', 'vernis');
+         productPicture.setAttribute('alt', 'meuble en bois');
+         productListLabel.setAttribute('for', 'vernis');
          quantityInputs.setAttribute('type', 'number');
          quantityInputs.setAttribute('value', 1);
-         addToCartButtons.setAttribute('value', 'Add');
-         removeCartItemButtons.setAttribute('type', 'button');
-         purchaseClicked.setAttribute('href', '../html/panier.html');
+         quantityInputs.setAttribute('min', 0);
+         returnButton.setAttribute('href', '../html/main.html')
+         addToCartButton.setAttribute('value', 'Add');
 // class
-         cardDiv.className = 'element';
-         cardImg.className = 'photo';
-         cardQuantity.className = 'quantity';
+         productDiv.className = 'element';
+         productPicture.className = 'photo';
+         productQuantity.className = 'quantity';
          quantityInputs.className = 'cart-quantity-input';
          priceAmount.className = 'cart-amount-price';
          cartButtons.className = 'shop-buttons';
-         addToCartButtons.className = 'shop-item-button';
-         removeCartItemButtons.className = 'btn-danger';
-         purchaseClicked.className = 'btn-purchase';
-
+         addToCartButton.className = 'shop-item-button';
+         returnButton.className = 'return-landing-page';
 // id
-         cardList.id = 'vernis';
+         productList.id = 'vernis';
 
-         
-        addToCartButtons.addEventListener('click', ()=>{addTo();}); //!!!pas ok
-
+// click       
+         addToCartButton.addEventListener('click', ()=>{addTo();}); 
+         returnButton.addEventListener('click', ()=>{returnTo();});
 // boucle récupère les données du tableau varnish         
          for (let i = 0; i < response.varnish.length; i++) {
                 // création de l'élément option            
-                   cardListOption.push(document.createElement('option'));
+                   productListOption.push(document.createElement('option'));
                 // création du noeud
-                   cardList.appendChild(cardListOption[i]);
+                   productList.appendChild(productListOption[i]);
                 // récupération et insertion des données     
-                   cardListOption[i].textContent = response.varnish[i];
+                   productListOption[i].textContent = response.varnish[i];
                 // attributs, récupère le nom du vernis
-                   cardListOption[i].setAttribute('value', response.varnish[i]);
+                   productListOption[i].setAttribute('value', response.varnish[i]);
+                   productListOption[i].id = 'type-vernis';
 
-         }
-
-         function addTo() {
-         	let msgAlert = document.createElement('p');
-         	msgAlert.textContent = 'le meuble : ' + response.name + ' a été ajouté à votre panier';
-         	cardDiv.appendChild(msgAlert);
-            priceAmount.textContent = ((response.price/100)*(++quantityInputs.value)) + '€' ;
-
-         }
-
-        function updateCartTotal() {
-            for (var i = 0; i < quantityInputs.length; i++) {
-
-                total = total + (response.price * quantityInputs)
-            }
-            total = Math.round(total * 100) / 100
-
-        }
+                   function setVernis(){
+                      localStorage.setItem('type-vernis', productList.value);
+                   }
+                   vernis.addEventListener('change', setVernis );
+// message et calcul du montant total et local Storage que je vais récupérer dans panier.js
+                     function addTo() {
+                     let msgAlert = document.createElement('p');
+                     msgAlert.textContent = +quantityInputs.value + " " + response.name + ' ' + ' ajouté.s à votre panier';
+                     productDiv.appendChild(msgAlert);
+                     priceAmount.textContent = ((response.price/100)*(+quantityInputs.value)) + '€' ;
+                     localStorage.setItem('macommande',[response._id,response.name,productList.value,response.price/100,quantityInputs.value]);
+                  } 
+                    function returnTo() {
+                     localStorage.setItem('macommande',[response._id,response.name,productList.value,response.price/100,quantityInputs.value]); 
+                    }
+           } 
 })
-
-
-// boutons plus moins   avec récupération du prix selon id  et multiplier par le nombre
-// local storage cf doc reçue     
-// bouton add to cart récup de l'id cf page main et 
-// qui écoutera ce qu'il y a dans input
-/*         let buttonAddToCart = response._id;
-           addToCartBtn.addEventListener('click', () => {
-           localStorage.setItem('id', buttonAddToCart);
-           }) */
 
 
 

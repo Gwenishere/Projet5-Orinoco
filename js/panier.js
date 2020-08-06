@@ -29,7 +29,6 @@ let pageFooterText = document.createElement('p');
 let cartButtons = document.createElement('div');
 let removeCartItemButtons = document.createElement('button');
 let submitBtn = document.createElement('input');
-// let firstCaseFormular = document.createElement('input');
 
 document.body.prepend(pageHeader);
 pageHeader.prepend(pageHeaderTitle);
@@ -62,11 +61,9 @@ document.body.appendChild(pageFooter);
 pageFooter.prepend(pageFooterDiv);
 pageFooterDiv.prepend(pageFooterText);
 
-// document.body.appendChild(firstCaseFormular);
-
 pageHeaderTitle.setAttribute('href', '../html/main.html');
 orderForm.setAttribute('method', 'post');
-orderForm.setAttribute('action', 'fichier.js'); // vers confirmation ou autre ou en trop ?
+
 formNameLabel.setAttribute('for', 'name');
 lastName.setAttribute('type', 'text');
 lastName.setAttribute('name', 'last_name');
@@ -97,9 +94,6 @@ removeCartItemButtons.setAttribute('type', 'button');
 submitBtn.setAttribute('href', '../html/confirmation.html');
 submitBtn.setAttribute('type', 'submit');
 submitBtn.setAttribute('value', 'Valider la commande');
-// document.querySelector('input').autofocus = true; pour obligation de zone
-
-
 
 formTitle.textContent = 'Veuillez compléter le formulaire ci-dessous';
 formNameMailTitle.textContent = 'Vos coordonnées : '
@@ -110,73 +104,52 @@ formAddressLabel.textContent = 'Adresse'
 formCityLabel.textContent = 'Ville'
 formAddressTitle.textContent = 'Votre adresse : ';
 removeCartItemButtons.textContent = 'ENLEVER DU PANIER';
-
-
+// Footer
 pageHeaderImg.src = '../img/banniere.png';
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné';
-
+// ID
 orderForm.id = 'orderForm';
 lastName.id = 'last_name';
 firstName.id = 'first_name';
 email.id = 'email';
 address.id = 'address';
 city.id = 'city';
-
+// Class
 removeCartItemButtons.className = 'btn-danger';
 submitBtn.className = 'btn-purchase';
 
+myCart = localStorage.getItem('macommande');
+//mettre des children pour structure, rappeler les id des éléments du tableau
 
-orderForm.addEventListener('submit', function(e) {
+// fonctions, écoute
+submitBtn.addEventListener('submit', function(e) {
 	alert('Nous vous remercions pour votre commande !');
 	e.preventDefault();
 });
 
+submitBtn.addEventListener('click', ()=>{addToBasket();}); 
+
+// il faudrait stocker un tableau et le récupérer puis le push au fur et à mesure.
+// Le push sert en effet à ajouter mon produit dans le tableau du panier.js
+// Peut être faire un petit if le tableau n'existe pas alors le créer aussi, else récupérer le tableau stocké.
 
 
+// function addToBasket() {
 
-/*function addToBasket() {
 
-    // Check if we already have an array in local storage.
-    
-    let x = localStorage.getItem("productList");
-    
-    // If not, create the array.
-    
-    if (x === null) x = [];
-    
-    // If so, decode the array.
-    
-    else x = JSON.parse(x);
-    
-    // Add our new item.
-    
-    x.push(objetProduit);
-    
-    // Encode the array.
-    
-    x = JSON.stringify(x);
-    
-    // Add back to LocalStorage.
-    
-    localStorage.setItem("productList", x);   
-    window.open("panier.php");  
-    };
-     array.find(key => key.value === 'my_item')
-*/
-/* // formulaire nom prénom adresse ville email
-
-document.getElementById('stockage').onclick = function() {
+// formulaire nom prénom adresse ville email
+/*document.getElementById('stockage').onclick = function() {
 	if(typeof localStorage!='undefined' && JSON) {
 		var coordonnees = {
-			nom:document.getElementById('nom').value,
-			prenom:document.getElementById('prenom').value,
+			nom:document.getElementById('name').value,
+			prenom:document.getElementById('firstname').value,
 			ville:document.getElementById('ville').value,
 		};
 		localStorage.setItem('coord',JSON.stringify(coordonnees));
 		alert("Mémorisation effectuée");
 	} else alert("localStorage n'est pas supporté");
-};
-// Méthode de lecture
+};*/
+/* Méthode de lecture
 document.getElementById('lecture').onclick = function() {
 	if(typeof localStorage!='undefined' && JSON) {
 		var coordonnees = JSON.parse(localStorage.getItem('coord'));
@@ -185,7 +158,4 @@ document.getElementById('lecture').onclick = function() {
 		document.getElementById('ville').value = coordonnees.ville;
 		alert("Lecture effectuée");
 	} else alert("localStorage n'est pas supporté");
-};
-*/
-
-
+};*/
