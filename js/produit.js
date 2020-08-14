@@ -95,6 +95,7 @@ response.json()).then(response => {
          quantityInputs.setAttribute('min', 0);
          returnButton.setAttribute('href', '../html/main.html')
          addToCartButton.setAttribute('value', 'Add');
+         addToCartButton.setAttribute('onclick', 'document.location.href')//voir ça
 // class
          productDiv.className = 'element';
          productPicture.className = 'photo';
@@ -132,11 +133,13 @@ response.json()).then(response => {
                      msgAlert.textContent = +quantityInputs.value + " " + response.name + ' ' + ' ajouté.s à votre panier';
                      productDiv.appendChild(msgAlert);
                      priceAmount.textContent = ((response.price/100)*(+quantityInputs.value)) + '€' ;
-                     localStorage.setItem('macommande',[response._id,response.name,productList.value,response.price/100,quantityInputs.value]);
+                     localStorage.setItem('nombrecommande',parseInt(localStorage.getItem('nombrecommande'))?parseInt(localStorage.getItem('nombrecommande'))+1:1);
+                     localStorage.setItem('macommande'+ '' + (parseInt(localStorage.getItem('nombrecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,response.price/100]);                  
                   } 
                     function returnTo() {
-                     localStorage.setItem('macommande',[response._id,response.name,productList.value,response.price/100,quantityInputs.value]); 
-                    }
+                     localStorage.setItem('macommande',[response._id,response.name,productList.value,quantityInputs.value,response.price/100]); 
+                     
+                  }
            } 
 })
 

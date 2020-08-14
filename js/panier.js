@@ -1,8 +1,29 @@
+// DOM page et header
 let b = document.body;
 let pageHeader = document.createElement('header');
 let pageHeaderTitle = document.createElement('a');
 let pageHeaderImg = document.createElement('img');
 
+
+
+let tableStructure = "";
+let contact = {};
+
+const tableCart = document.querySelector('#cart-table');
+const totalValue = document.querySelector('.value');
+for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
+	localStorage.getItem('macommande'+i)[4] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4]
+	let tableContainer = document.createElement('tr');
+	let tableBody = [];
+for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length ; j++){
+		 tableBody.push(document.createElement('td'));
+		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];
+		 tableContainer.appendChild(tableBody[j]);
+	}
+	bodytable.appendChild(tableContainer);
+}
+
+// Formulaire
 let orderForm = document.createElement('form');
 let formTitle = document.createElement('h2');
 let formNameMailTitle = document.createElement('h3');
@@ -25,15 +46,16 @@ let city = document.createElement('input');
 let pageFooter = document.createElement('footer');
 let pageFooterDiv = document.createElement('div');
 let pageFooterText = document.createElement('p');
-
-let cartButtons = document.createElement('div');
-let removeCartItemButtons = document.createElement('button');
+// bouton valider commande lié au formulaire et tableau
 let submitBtn = document.createElement('input');
-
+// ?bouton supprimer commande lié au tableau ou formulaire ou les deux ?
+let cartButtons = document.createElement('div');
+let removeCartBtn = document.createElement('button');
+// DOM Header
 document.body.prepend(pageHeader);
 pageHeader.prepend(pageHeaderTitle);
 pageHeaderTitle.prepend(pageHeaderImg);
-
+// DOM Form
 document.body.appendChild(orderForm);
 orderForm.prepend(formTitle);
 orderForm.appendChild(formNameMailTitle);
@@ -53,16 +75,22 @@ formAddressCell.appendChild(address);
 orderForm.appendChild(formCityCell);
 formCityCell.appendChild(formCityLabel);
 formCityCell.appendChild(city);
+// DOM bouton
+orderForm.appendChild(cartButtons);
+cartButtons.appendChild(submitBtn);
+cartButtons.appendChild(removeCartBtn);
 
-cartButtons.appendChild(removeCartItemButtons);
-orderForm.appendChild(submitBtn);
-
+// DOM Footer
 document.body.appendChild(pageFooter);
 pageFooter.prepend(pageFooterDiv);
 pageFooterDiv.prepend(pageFooterText);
+// Footer contenu
+pageHeaderImg.src = '../img/banniere.png';
+pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné';
 
 pageHeaderTitle.setAttribute('href', '../html/main.html');
 orderForm.setAttribute('method', 'post');
+orderForm.setAttribute('autocomplete', 'off');
 
 formNameLabel.setAttribute('for', 'name');
 lastName.setAttribute('type', 'text');
@@ -90,7 +118,7 @@ city.setAttribute('name', 'city');
 city.setAttribute('placeholder', '*Ville');
 city.required = true;
 
-removeCartItemButtons.setAttribute('type', 'button');
+removeCartBtn.setAttribute('type', 'button');
 submitBtn.setAttribute('href', '../html/confirmation.html');
 submitBtn.setAttribute('type', 'submit');
 submitBtn.setAttribute('value', 'Valider la commande');
@@ -103,10 +131,7 @@ formEmailLabel.textContent = 'Email'
 formAddressLabel.textContent = 'Adresse'
 formCityLabel.textContent = 'Ville'
 formAddressTitle.textContent = 'Votre adresse : ';
-removeCartItemButtons.textContent = 'ENLEVER DU PANIER';
-// Footer
-pageHeaderImg.src = '../img/banniere.png';
-pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné';
+removeCartBtn.textContent = 'Vider le panier';
 // ID
 orderForm.id = 'orderForm';
 lastName.id = 'last_name';
@@ -115,24 +140,31 @@ email.id = 'email';
 address.id = 'address';
 city.id = 'city';
 // Class
-removeCartItemButtons.className = 'btn-danger';
+removeCartBtn.className = 'btn-danger';
 submitBtn.className = 'btn-purchase';
 
-myCart = localStorage.getItem('macommande');
-//mettre des children pour structure, rappeler les id des éléments du tableau
+// formulaire récupération
 
-// fonctions, écoute
-submitBtn.addEventListener('submit', function(e) {
-	alert('Nous vous remercions pour votre commande !');
-	e.preventDefault();
-});
+
+// fonctions, écoute, controler formulaire
+/*lastName.addEventListener('keypress',  +??? ça bloque la case :( 
+function(event) {
+	event.preventDefault()
+	let numberInput = /[0-9]/;
+	if(numberInput.test(lastName) === true){
+	 console.log('le nom est incorrect')
+	} else {
+	console.log('nom fonctionne');
+    }
+});*/
 
 submitBtn.addEventListener('click', ()=>{addToBasket();}); 
 
-// il faudrait stocker un tableau et le récupérer puis le push au fur et à mesure.
-// Le push sert en effet à ajouter mon produit dans le tableau du panier.js
-// Peut être faire un petit if le tableau n'existe pas alors le créer aussi, else récupérer le tableau stocké.
-
+// vider panier
+removeCartBtn.addEventListener('click', () => {
+	localStorage.clear();
+	location.reload();
+})
 
 // function addToBasket() {
 
@@ -149,13 +181,13 @@ submitBtn.addEventListener('click', ()=>{addToBasket();});
 		alert("Mémorisation effectuée");
 	} else alert("localStorage n'est pas supporté");
 };*/
-/* Méthode de lecture
-document.getElementById('lecture').onclick = function() {
-	if(typeof localStorage!='undefined' && JSON) {
-		var coordonnees = JSON.parse(localStorage.getItem('coord'));
-		document.getElementById('nom').value = coordonnees.nom;
-		document.getElementById('prenom').value = coordonnees.prenom;
-		document.getElementById('ville').value = coordonnees.ville;
-		alert("Lecture effectuée");
-	} else alert("localStorage n'est pas supporté");
-};*/
+// Méthode de lecture
+//document.getElementById('lecture').onclick = function() {
+//	if(typeof localStorage!='undefined' && JSON) {
+//		var coordonnees = JSON.parse(localStorage.getItem('coord'));
+//		document.getElementById('nom').value = coordonnees.nom;
+//		document.getElementById('prenom').value = coordonnees.prenom;
+//		document.getElementById('ville').value = coordonnees.ville;
+//		alert("Lecture effectuée");
+//	} else alert("localStorage n'est pas supporté");
+// };

@@ -42,26 +42,29 @@
               </div>
             </nav>
     <main class="container">
-      <div>
+      <div id="container-table">
         <h2>Récapitulatif de votre commande</h2>
             <table id="cart-table">
               <thead>
-                  <th>Nom du produit</th>
+                <tr>
+                  <th>Référence</th>
+                  <th>Article</th>
                   <th>Vernis</th>
                   <th>Quantité</th>
                   <th>Prix</th>
                   <th>Sous-total</th>
+                </tr>
               </thead>
-              <tbody></tbody>                
-              <tfoot id="total-price">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>TOTAL : <span class="value">0</span>€</td>
+              <tbody id="bodytable">
+
+              </tbody>                
+              <tfoot id="cart-total">
+                  <td colspan="6">
+                  TOTAL : <span class="value">0</span>€</td>
               </tfoot>
           </table>
 </div>
+<button>bouton supprimer article sur chaque ligne</button>
           </main>
         <script src="../js/panier.js"></script>
     </body>

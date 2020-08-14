@@ -288,14 +288,17 @@ color: white;
 }
 /*enlever*/
 .btn-danger {
+    width: 50%;
     color: #43484D;
     background-color: #ec8686;
     border: none;
     border-radius: 4px;
+    font-size: 15px;
     font-weight: bold;
-    margin: 40px auto 80px auto;
+    margin: 10px auto 20px auto;
     padding: 8px 12px;
-    display: inline-block;
+    display: block;
+    cursor: pointer;
 }
 .btn-danger:hover {
     background-color: rgb(78, 74, 76);
@@ -313,9 +316,9 @@ color: white;
     font-size: 15px;
     display: block;
     cursor: pointer;
-    margin: 40px auto 80px auto;
+    margin: 10px auto 20px auto;
     text-align: center;
-    vertical-align: middle;
+  
 }
 .btn-purchase:hover {
     background-color: rgb(78, 74, 76);
@@ -337,7 +340,10 @@ th {
     margin: 10px auto;
     padding: 10px 20px;
 }
-
+#body-table {
+    margin: 10px auto;
+    padding: 10px 20px; 
+}
 :required::placeholder
 {
     color: rgb(255, 81, 0);
