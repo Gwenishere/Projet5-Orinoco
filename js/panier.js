@@ -4,18 +4,18 @@ let pageHeader = document.createElement('header');
 let pageHeaderTitle = document.createElement('a');
 let pageHeaderImg = document.createElement('img');
 
-
-
 let tableStructure = "";
 let contact = {};
 
 const tableCart = document.querySelector('#cart-table');
-const totalValue = document.querySelector('.value');
+const totalValue = document.querySelector('#total');
+
 for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
-	localStorage.getItem('macommande'+i)[4] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4]
+	localStorage.getItem('macommande'+i)[5] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4];
 	let tableContainer = document.createElement('tr');
+	tableContainer.id = 'table-container';
 	let tableBody = [];
-for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length ; j++){
+	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length ; j++){
 		 tableBody.push(document.createElement('td'));
 		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];
 		 tableContainer.appendChild(tableBody[j]);
