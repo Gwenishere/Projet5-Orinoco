@@ -134,7 +134,7 @@ response.json()).then(response => {
                      productDiv.appendChild(msgAlert);
                      priceAmount.textContent = ((response.price/100)*(+quantityInputs.value)) + '€' ;
                      localStorage.setItem('nombrecommande',parseInt(localStorage.getItem('nombrecommande'))?parseInt(localStorage.getItem('nombrecommande'))+1:1);
-                     localStorage.setItem('macommande'+ '' + (parseInt(localStorage.getItem('nombrecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,response.price/100]);                  
+                     localStorage.setItem('macommande'+ '' + (parseInt(localStorage.getItem('nombrecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,quantityInputs.value*response.price/100]);                  
                   } 
                     function returnTo() {
                      localStorage.setItem('macommande',[response._id,response.name,productList.value,quantityInputs.value,response.price/100]); 

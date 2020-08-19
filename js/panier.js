@@ -11,7 +11,7 @@ const tableCart = document.querySelector('#cart-table');
 const totalValue = document.querySelector('#total');
 
 for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
-	localStorage.getItem('macommande'+i)[5] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4];
+  // localStorage.getItem('macommande'+i)[5] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4];
 	let tableContainer = document.createElement('tr');
 	tableContainer.id = 'table-container';
 	let tableBody = [];
@@ -19,6 +19,11 @@ for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 		 tableBody.push(document.createElement('td'));
 		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];
 		 tableContainer.appendChild(tableBody[j]);
+
+// calcul du montant total de la commande mais ne fonctionne pas pr le moment !
+		 let finalPrice;
+		 finalPrice = 0;
+		 finalPrice += tableBody[j][4];
 	}
 	bodytable.appendChild(tableContainer);
 }
