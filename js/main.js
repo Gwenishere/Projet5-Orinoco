@@ -86,5 +86,5 @@ fetch('http://localhost:3000/api/furniture').then(response =>
         })
         myCart = localStorage.getItem('macommande');
 
-    }
+}
 })

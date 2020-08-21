@@ -344,6 +344,24 @@ th {
     margin: 10px auto;
     padding: 10px 20px; 
 }
+@media (max-width: 700px){
+    th {
+    display: none;
+    }
+    tr {
+        display: block;
+        margin-bottom: 40px;
+    }
+    td {
+        display: block;
+        text-align: right;
+    }
+    td::before {
+        content: attr(data-label);
+        float: left;
+    }
+}
+/*formulaire*/
 :required::placeholder
 {
     color: rgb(255, 81, 0);
@@ -373,5 +391,4 @@ input[type="email"]
   margin-bottom: 30px;
   box-sizing: border-box;
 }
-
 

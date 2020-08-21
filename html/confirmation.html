@@ -12,7 +12,8 @@
        <meta name="robots" content="index, follow">
         <title>Orinoco - Confirmation de votre panier, merci !</title>
         <link rel="shortcut icon" href="../img/logo.JPG"  type="image/x-icon">
-        <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     </head>
     <body>
@@ -21,17 +22,12 @@
             <label for="mobile">☰ Menu</label>
             <input type="checkbox" id="mobile" role="button">
               <ul>
-                <li class="deroulant"><a href="../html/main.html"><i class="fas fa-chair"></i> Meubles</a>
-                  <ul class="sous">
-                    <li><a href="#">Tables</a></li>
-                    <li><a href="#">Chaises</a></li>
-                  </ul>
+                <li><a href="../html/main.html"><i class="fas fa-chair"></i> Meubles</a>
                 </li>
                 <li><a href="../html/panier.html"><i class="fas fa-shopping-basket"></i> Mon panier</a></li>
                 <li><a href="#"><i class="far fa-user"></i> Mon compte</a></li>
                 <li class="deroulant"><a href="#"><i class="far fa-question-circle"></i> A propos</a>
                     <ul class="sous">
-                      <li><a href="#">Il était une fois</a></li>
                       <li><a href="#">Nous joindre</a></li>
                       <li><a href="#">Conditions de vente et mentions légales</a></li>
                     </ul>
@@ -39,9 +35,14 @@
               </ul>
             </div>
           </nav>
+          <main id="message" class="m-3">
+            <h1>Confirmation de votre commande</h1>
+            <h2 id="thanks">Merci chèr.e <span id="username"></span>!</h1>
+            <p id="order"></p>
+            <p>Vous allez bientôt recevoir le numéro de suivi et le récapitulatif par mail.</p>
+         </main>
+  
     
-    
-      
         <script src="../js/confirmation.js"></script>
     </body>
 </html>

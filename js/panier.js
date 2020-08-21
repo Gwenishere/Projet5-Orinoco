@@ -10,23 +10,29 @@ let contact = {};
 const tableCart = document.querySelector('#cart-table');
 const totalValue = document.querySelector('#total');
 
+let finalPrice = 0;
+
 for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
-  // localStorage.getItem('macommande'+i)[5] = localStorage.getItem('macommande'+i)[3]*localStorage.getItem('macommande'+i)[4];
-	let tableContainer = document.createElement('tr');
+	if (localStorage.getItem('macommande'+i) != undefined) {
+  let tableContainer = document.createElement('tr');
 	tableContainer.id = 'table-container';
 	let tableBody = [];
+	
 	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length ; j++){
 		 tableBody.push(document.createElement('td'));
 		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];
 		 tableContainer.appendChild(tableBody[j]);
 
 // calcul du montant total de la commande mais ne fonctionne pas pr le moment !
-		 let finalPrice;
-		 finalPrice = 0;
-		 finalPrice += tableBody[j][4];
+         
 	}
+	finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);
+
 	bodytable.appendChild(tableContainer);
 }
+}
+displayTotal.textContent = finalPrice;
+console.log(finalPrice);
 
 // Formulaire
 let orderForm = document.createElement('form');
