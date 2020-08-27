@@ -17,24 +17,20 @@
         <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     </head>
     <body>
-        <nav>
-            <div class="conteneur-nav">
-            <label for="mobile">☰ Menu</label>
-            <input type="checkbox" id="mobile" role="button">
-              <ul>
-                <li><a href="../html/main.html"><i class="fas fa-chair"></i> Meubles</a>
-                </li>
-                <li><a href="../html/panier.html"><i class="fas fa-shopping-basket"></i> Mon panier</a></li>
-                <li><a href="#"><i class="far fa-user"></i> Mon compte</a></li>
-                <li class="deroulant"><a href="#"><i class="far fa-question-circle"></i> A propos</a>
-                    <ul class="sous">
-                      <li><a href="#">Nous joindre</a></li>
-                      <li><a href="#">Conditions de vente et mentions légales</a></li>
-                    </ul>
-                  </li>
-              </ul>
-            </div>
-          </nav>
+      <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="../html/main.html"><i class="fas fa-chair"></i> Meubles </a>
+            <a class="nav-item nav-link active" href="../html/panier.html"><i class="fas fa-shopping-basket"></i>Mon panier</a>
+            <a class="nav-item nav-link active" href="#"><i class="far fa-user"></i>Mon compte</a>
+            <a class="nav-item nav-link active" href="#" ><i class="far fa-question-circle"></i>A propos</a>
+          </div>
+        </div>
+      </nav>
           <main id="message" class="m-3">
             <h1>Confirmation de votre commande</h1>
             <h2 id="thanks">Merci chèr.e <span id="username"></span>!</h1>

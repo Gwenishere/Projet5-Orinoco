@@ -14,36 +14,40 @@
        <meta name="robots" content="index, follow">
         <title>Orinoco - votre panier</title>
         <link rel="shortcut icon" href="../img/logo.JPG"  type="image/x-icon">
-        <link rel="stylesheet" href="../css/style.css">  
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
       </head>
       <body>
-          <nav>
-              <div class="conteneur-nav">
-              <label for="mobile">☰ Menu</label>
-              <input type="checkbox" id="mobile" role="button">
-                <ul>
-                  <li><a href="../html/main.html"><i class="fas fa-chair"></i> Meubles</a>
-                  </li>
-                  <li><a href="../html/panier.html"><i class="fas fa-shopping-basket"></i> Ma commande</a></li>
-                  <li><a href="#"><i class="far fa-user"></i> Mon compte</a></li>
-                  <li><a href="#"><i class="far fa-question-circle"></i> A propos</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Menu</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-1" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-1 special-dropdown-nav" >
+            <ul class="site-navigation nav navbar-nav">
+              <li><a class="nav-item nav-link active" href="../html/main.html"><i class="fas fa-chair"></i>Meubles </a></li>
+              <li><a class="nav-item nav-link active" href="../html/panier.html"><i class="fas fa-shopping-basket"></i>Mon panier</a></li>
+              <li><a class="nav-item nav-link active" href="#"><i class="far fa-user"></i>Mon compte</a></li>
+              <li><a class="nav-item nav-link active" href="#" ><i class="far fa-question-circle"></i>A propos</a></li>
+
+            </ul>
+          </div>
+        </nav>
+
     <main class="container">
-      <div id="table">
+      <div id="table" class="table-responsive">
         <h2>Récapitulatif de votre commande</h2>
-            <table id="cart-table">
+            <table id="cart-table" class="table table-hover">
               <thead>
                 <tr>
-                  <th>Référence</th>
-                  <th>Article</th>
-                  <th>Vernis</th>
-                  <th>Quantité</th>
-                  <th>Sous-total</th>
-                  <th><i class="fa fa-trash"></i>Supprimer</th>
+                  <th scope="col" class="table-primary">Référence</th>
+                  <th scope="col" class="table-primary">Article</th>
+                  <th scope="col" class="table-primary">Vernis</th>
+                  <th scope="col" class="table-primary">Quantité</th>
+                  <th scope="col" class="table-primary">Sous-total</th>
+                  <th scope="col" class="table-primary"><i class="fa fa-trash"></i>Supprimer</th>
                 </tr>
               </thead>
               <tbody id="bodytable">

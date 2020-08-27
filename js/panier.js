@@ -15,25 +15,34 @@ let finalPrice = 0;
 for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	if (localStorage.getItem('macommande'+i) != undefined) {
   let tableContainer = document.createElement('tr');
-	tableContainer.id = 'table-container';
+	tableContainer.className = 'table-container';
 	let tableBody = [];
 	
-	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length ; j++){
+	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){
 		 tableBody.push(document.createElement('td'));
-		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];
+		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];		
 		 tableContainer.appendChild(tableBody[j]);
-
-// calcul du montant total de la commande mais ne fonctionne pas pr le moment !
-         
+		 
+// calcul du montant total de la commande         
 	}
+	let removeIcon = document.createElement('i');
+	tableBody[localStorage.getItem('macommande'+i).split(',').length].appendChild(removeIcon);
+	removeIcon.setAttribute('class', 'fas fa-times-circle close');
+	removeIcon.setAttribute('aria-hidden', 'true');
+	console.log(tableContainer.children);
+	removeIcon.addEventListener('click', ()=>{ // PB le total reste le même
+	  bodytable.removeChild(bodytable.children[i]); 
+	})
 	finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);
-
 	bodytable.appendChild(tableContainer);
 }
 }
 displayTotal.textContent = finalPrice;
-console.log(finalPrice);
-
+if (finalPrice === 0){  // si panier vide, alors alert message panier vide
+	alert('votre panier est vide');
+} else {
+console.log('montant total du panier = ' + finalPrice);
+}
 // Formulaire
 let orderForm = document.createElement('form');
 let formTitle = document.createElement('h2');
@@ -59,7 +68,7 @@ let pageFooterDiv = document.createElement('div');
 let pageFooterText = document.createElement('p');
 // bouton valider commande lié au formulaire et tableau
 let submitBtn = document.createElement('input');
-// ?bouton supprimer commande lié au tableau ou formulaire ou les deux ?
+// bouton supprimer commande lié au tableau ou formulaire ou les deux ?
 let cartButtons = document.createElement('div');
 let removeCartBtn = document.createElement('button');
 // DOM Header
@@ -102,7 +111,7 @@ pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 
 pageHeaderTitle.setAttribute('href', '../html/main.html');
 orderForm.setAttribute('method', 'post');
 orderForm.setAttribute('autocomplete', 'off');
-
+orderForm.setAttribute('name', 'form');
 formNameLabel.setAttribute('for', 'name');
 lastName.setAttribute('type', 'text');
 lastName.setAttribute('name', 'last_name');
@@ -130,6 +139,7 @@ city.setAttribute('placeholder', '*Ville');
 city.required = true;
 
 removeCartBtn.setAttribute('type', 'button');
+removeCartBtn.setAttribute('class', 'btn btn-danger btn-lg')
 submitBtn.setAttribute('href', '../html/confirmation.html');
 submitBtn.setAttribute('type', 'submit');
 submitBtn.setAttribute('value', 'Valider la commande');
@@ -150,34 +160,54 @@ firstName.id = 'first_name';
 email.id = 'email';
 address.id = 'address';
 city.id = 'city';
+submitBtn.id = 'buy'
 // Class
 removeCartBtn.className = 'btn-danger';
 submitBtn.className = 'btn-purchase';
 
-// formulaire récupération
-
-
-// fonctions, écoute, controler formulaire
-/*lastName.addEventListener('keypress',  +??? ça bloque la case :( 
-function(event) {
-	event.preventDefault()
-	let numberInput = /[0-9]/;
-	if(numberInput.test(lastName) === true){
-	 console.log('le nom est incorrect')
-	} else {
-	console.log('nom fonctionne');
-    }
-});*/
-
-submitBtn.addEventListener('click', ()=>{addToBasket();}); 
+// vérifier si contenu dans formulaire
+if (lastName = ''){
+	alert('nom incorrect');
+} else {
+	console.log('nom OK');
+}
+if (firstName = ''){
+	alert('prénom incorrect');
+} else {
+	console.log('prénom OK');
+}
+if (email = ''){
+	alert('email incorrect');
+} else {
+	console.log('email OK');
+}
+if (address = ''){
+	alert('adresse incorrecte');
+} else {
+	console.log('adresse OK');
+}
+if (city = ''){
+	alert('ville incorrecte');
+} else {
+	console.log('ville OK');
+}
 
 // vider panier
 removeCartBtn.addEventListener('click', () => {
 	localStorage.clear();
 	location.reload();
 })
+/* s'exécute après clic sur le bouton valider panier */
+submitBtn.addEventListener('click', buy, true);
+function buy() {
+	location.href='../html/confirmation.html'; // PB ne fonctionne pas
+	}
 
-// function addToBasket() {
+
+
+// formulaire récupération
+
+// fonctions, écoute, controler formulaire
 
 
 // formulaire nom prénom adresse ville email
