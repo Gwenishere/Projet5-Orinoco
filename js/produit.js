@@ -35,10 +35,9 @@ cardSection.className = 'container';
 // id
 pageHeaderContainer.id = 'titre_principal';
 pageHeaderElement.id = 'logo';
-
+// requete
 fetch ('http://localhost:3000/api/furniture/'+ localStorage.getItem('id')).then(response =>
 response.json()).then(response => {
-
 // création des éléments          
          let productDiv = document.createElement('div');
          let productTitle = document.createElement('h3');
@@ -56,8 +55,7 @@ response.json()).then(response => {
          let priceAmount = document.createElement('p');
          let cartButtons = document.createElement('div');
          let addToCartButton = document.createElement('button');
-         let returnButton = document.createElement('a');
-    
+         let returnButton = document.createElement('a');  
  // création des noeuds, arbre 
           cardSection.appendChild(productDiv);
           productDiv.appendChild(productTitle);
@@ -74,8 +72,7 @@ response.json()).then(response => {
           priceElement.appendChild(priceAmount);
           productDiv.appendChild(cartButtons);
           cartButtons.appendChild(returnButton);
-          cartButtons.appendChild(addToCartButton);
-     
+          cartButtons.appendChild(addToCartButton);     
 // récupération et insertion des données
          productTitle.textContent = response.name + ' - ' + response.price/100 + ' € TTC';
          productPicture.src = response.imageUrl;
@@ -87,7 +84,7 @@ response.json()).then(response => {
          priceAmount.textContent = response.price/100 + ' €';
          returnButton.textContent = "RETOUR A L'ACCUEIL"
          addToCartButton.textContent = ' AJOUTER AU PANIER'; 
-// attribut
+// attributs
          productPicture.setAttribute('alt', 'meuble en bois');
          productListLabel.setAttribute('for', 'vernis');
          quantityInputs.setAttribute('type', 'number');
@@ -95,7 +92,6 @@ response.json()).then(response => {
          quantityInputs.setAttribute('min', 0);
          returnButton.setAttribute('href', '../html/main.html')
          addToCartButton.setAttribute('value', 'Add');
-
 // class
          productDiv.className = 'element';
          productPicture.className = 'photo';
@@ -138,10 +134,9 @@ response.json()).then(response => {
                      location.href ='../html/panier.html';
                   } 
                     function returnTo() {
-                     localStorage.setItem('macommande',[response._id,response.name,productList.value,quantityInputs.value,response.price/100]); 
-                     
+                     localStorage.setItem('macommande',[response._id,response.name,productList.value,quantityInputs.value,response.price/100]);                     
                   }
-           } 
+               } 
 })
 
 

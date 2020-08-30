@@ -35,12 +35,11 @@ cardSection.className = 'container';
 // id
 pageHeaderContainer.id = 'titre_principal';
 pageHeaderElement.id = 'logo';
-
 // utilisation d'une fonction then pour exécuter du code, c'est une promesse
 fetch('http://localhost:3000/api/furniture').then(response =>
     response.json()).then(response => {
 
-    // pour reprendre plus tard dans for, je détermine les données, leurs noms
+// pour reprendre plus tard dans for, je détermine les données, leurs noms
     let productDiv = [];
     let productTitle = [];
     let productPicture = [];
@@ -48,7 +47,7 @@ fetch('http://localhost:3000/api/furniture').then(response =>
     let productDescription = [];
     let productPrice = [];
     let productMoreLink = [];
-    // création des éléments
+// création des éléments
     for (var i = 0; i < response.length; i++) {
         productDiv.push(document.createElement('div'));
         productTitle.push(document.createElement('h3'));
@@ -57,7 +56,7 @@ fetch('http://localhost:3000/api/furniture').then(response =>
         productDescription.push(document.createElement('p'));
         productPrice.push(document.createElement('p'));
         productMoreLink.push(document.createElement('a'));
-        // noeuds
+// noeuds
         cardSection.appendChild(productDiv[i]);
         productDiv[i].appendChild(productTitle[i]);
         productDiv[i].appendChild(productPicture[i]);
@@ -65,26 +64,24 @@ fetch('http://localhost:3000/api/furniture').then(response =>
         productDiv[i].appendChild(productDescription[i]);
         productDiv[i].appendChild(productPrice[i]);
         productDiv[i].appendChild(productMoreLink[i]);
-        // contenu
+// contenus
         productTitle[i].textContent = response[i].name;
         productPicture[i].src = response[i].imageUrl;
         productId[i].textContent = 'Ref article : ' + response[i]._id;
         productDescription[i].textContent = 'Description : ' + response[i].description;
         productPrice[i].textContent = 'Prix : ' + response[i].price / 100 + ' € TTC';
         productMoreLink[i].textContent = 'Découvrez le meuble';
-        // attribut
+// attributs
         productPicture[i].setAttribute('alt', 'meuble en bois');
         productMoreLink[i].setAttribute('href', '../html/produit.html');
-        // class
+// class
         productDiv[i].className = 'element';
         productMoreLink[i].className = 'buttonShow';
-        // click et prends le lien de l'id unique
+// click et prends le lien de l'id unique
         let buttonLink = response[i]._id;
         productMoreLink[i].addEventListener('click', () => {
         localStorage.setItem('id', buttonLink);
-
         })
         myCart = localStorage.getItem('macommande');
-
-}
+    }
 })

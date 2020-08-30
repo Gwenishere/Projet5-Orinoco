@@ -9,9 +9,9 @@ let contact = {};
 
 const tableCart = document.querySelector('#cart-table');
 const totalValue = document.querySelector('#total');
-
+// déclarer somme totale
 let finalPrice = 0;
-
+// boucles qui récupèrent panier 
 for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	if (localStorage.getItem('macommande'+i) != undefined) {
   let tableContainer = document.createElement('tr');
@@ -21,8 +21,7 @@ for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){
 		 tableBody.push(document.createElement('td'));
 		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];		
-		 tableContainer.appendChild(tableBody[j]);
-		 
+		 tableContainer.appendChild(tableBody[j]);		 
 // calcul du montant total de la commande         
 	}
 	let removeIcon = document.createElement('i');
@@ -30,8 +29,8 @@ for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	removeIcon.setAttribute('class', 'fas fa-times-circle close');
 	removeIcon.setAttribute('aria-hidden', 'true');
 	console.log(tableContainer.children);
-	removeIcon.addEventListener('click', ()=>{ // PB le total reste le même
-	  bodytable.removeChild(bodytable.children[i]); 
+	removeIcon.addEventListener('click', ()=>{ // PB le total reste le même, le localStorage reste et donc actualiser page remet panier
+	  bodytable.removeChild(bodytable.children[i]);
 	})
 	finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);
 	bodytable.appendChild(tableContainer);
@@ -99,7 +98,6 @@ formCityCell.appendChild(city);
 orderForm.appendChild(cartButtons);
 cartButtons.appendChild(submitBtn);
 cartButtons.appendChild(removeCartBtn);
-
 // DOM Footer
 document.body.appendChild(pageFooter);
 pageFooter.prepend(pageFooterDiv);
@@ -107,7 +105,7 @@ pageFooterDiv.prepend(pageFooterText);
 // Footer contenu
 pageHeaderImg.src = '../img/banniere.png';
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné';
-
+// Attributs formulaire
 pageHeaderTitle.setAttribute('href', '../html/main.html');
 orderForm.setAttribute('method', 'post');
 orderForm.setAttribute('autocomplete', 'off');
@@ -137,13 +135,13 @@ city.setAttribute('type', 'text');
 city.setAttribute('name', 'city');
 city.setAttribute('placeholder', '*Ville');
 city.required = true;
-
+// Attributs boutons
 removeCartBtn.setAttribute('type', 'button');
 removeCartBtn.setAttribute('class', 'btn btn-danger btn-lg')
 submitBtn.setAttribute('href', '../html/confirmation.html');
 submitBtn.setAttribute('type', 'submit');
 submitBtn.setAttribute('value', 'Valider la commande');
-
+// Contenus formulaire et boutons
 formTitle.textContent = 'Veuillez compléter le formulaire ci-dessous';
 formNameMailTitle.textContent = 'Vos coordonnées : '
 formNameLabel.textContent = 'Nom'
@@ -153,7 +151,7 @@ formAddressLabel.textContent = 'Adresse'
 formCityLabel.textContent = 'Ville'
 formAddressTitle.textContent = 'Votre adresse : ';
 removeCartBtn.textContent = 'Vider le panier';
-// ID
+// Id
 orderForm.id = 'orderForm';
 lastName.id = 'last_name';
 firstName.id = 'first_name';
@@ -164,7 +162,6 @@ submitBtn.id = 'buy'
 // Class
 removeCartBtn.className = 'btn-danger';
 submitBtn.className = 'btn-purchase';
-
 // vérifier si contenu dans formulaire
 if (lastName = ''){
 	alert('nom incorrect');
@@ -191,7 +188,6 @@ if (city = ''){
 } else {
 	console.log('ville OK');
 }
-
 // vider panier
 removeCartBtn.addEventListener('click', () => {
 	localStorage.clear();
@@ -200,7 +196,7 @@ removeCartBtn.addEventListener('click', () => {
 /* s'exécute après clic sur le bouton valider panier */
 submitBtn.addEventListener('click', buy, true);
 function buy() {
-	location.href='../html/confirmation.html'; // PB ne fonctionne pas
+	location.href='../html/confirmation.html'; // PB ne fonctionne pas, envoi pas vers page
 	}
 
 
@@ -210,25 +206,3 @@ function buy() {
 // fonctions, écoute, controler formulaire
 
 
-// formulaire nom prénom adresse ville email
-/*document.getElementById('stockage').onclick = function() {
-	if(typeof localStorage!='undefined' && JSON) {
-		var coordonnees = {
-			nom:document.getElementById('name').value,
-			prenom:document.getElementById('firstname').value,
-			ville:document.getElementById('ville').value,
-		};
-		localStorage.setItem('coord',JSON.stringify(coordonnees));
-		alert("Mémorisation effectuée");
-	} else alert("localStorage n'est pas supporté");
-};*/
-// Méthode de lecture
-//document.getElementById('lecture').onclick = function() {
-//	if(typeof localStorage!='undefined' && JSON) {
-//		var coordonnees = JSON.parse(localStorage.getItem('coord'));
-//		document.getElementById('nom').value = coordonnees.nom;
-//		document.getElementById('prenom').value = coordonnees.prenom;
-//		document.getElementById('ville').value = coordonnees.ville;
-//		alert("Lecture effectuée");
-//	} else alert("localStorage n'est pas supporté");
-// };
