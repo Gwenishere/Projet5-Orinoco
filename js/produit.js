@@ -129,8 +129,8 @@ response.json()).then(response => {
                      msgAlert.textContent = +quantityInputs.value + " " + response.name + ' ' + ' ajouté.s à votre panier';
                      productDiv.appendChild(msgAlert);
                      priceAmount.textContent = ((response.price/100)*(+quantityInputs.value)) + '€' ;
-                     localStorage.setItem('nombrecommande',parseInt(localStorage.getItem('nombrecommande'))?parseInt(localStorage.getItem('nombrecommande'))+1:1);
-                     localStorage.setItem('macommande'+ '' + (parseInt(localStorage.getItem('nombrecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,quantityInputs.value*response.price/100]);
+                     localStorage.setItem('nblignecommande',parseInt(localStorage.getItem('nblignecommande'))?parseInt(localStorage.getItem('nblignecommande'))+1:1);
+                     localStorage.setItem('macommande'+ '' + (parseInt(localStorage.getItem('nblignecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,quantityInputs.value*response.price/100]);
                      location.href ='../html/panier.html';
                   } 
                     function returnTo() {

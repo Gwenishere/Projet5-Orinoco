@@ -21,12 +21,15 @@ cardSection.className = 'container';
 PageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
 
 //afficher le message de confirmation à partir du localStorage
-// let finalNumber = sessionStorage.getItem('numero');
-
+let finalNumber = sessionStorage.getItem('number');
+let finalPrice = sessionStorage.getItem('price');
+let firstName = sessionStorage.getItem('firstname');
+let thankMess = document.getElementById('username');
+let order = document.getElementById('order');
 //si pas de numero de commande alors message d'erreur
         if (finalNumber != null){
-           thankMess.textContent = nom;
-            order.textContent = 'Votre commande de ' + prixAffiche + '€ sous le numéro : ' + numeroFinal;
+           thankMess.textContent = firstName;
+            order.textContent = 'Votre commande pour un montant de ' + finalPrice + '€ sous le numéro : ' + finalNumber;
             localStorage.clear();
         }else{
             document.getElementById('thanks').textContent = 'Désolés !';

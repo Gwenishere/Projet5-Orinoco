@@ -12,7 +12,7 @@ const totalValue = document.querySelector('#total');
 // déclarer somme totale
 let finalPrice = 0;
 // boucles qui récupèrent panier 
-for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
+for(let i = 0; i < localStorage.getItem('nblignecommande') ; i++){
 	if (localStorage.getItem('macommande'+i) != undefined) {
   let tableContainer = document.createElement('tr');
 	tableContainer.className = 'table-container';
@@ -21,7 +21,8 @@ for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){
 		 tableBody.push(document.createElement('td'));
 		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];		
-		 tableContainer.appendChild(tableBody[j]);		 
+		 tableContainer.appendChild(tableBody[j]);
+		 console.log(tableBody[j]); 
 // calcul du montant total de la commande         
 	}
 	let removeIcon = document.createElement('i');
@@ -29,8 +30,13 @@ for(let i = 0; i < localStorage.getItem('nombrecommande') ; i++){
 	removeIcon.setAttribute('class', 'fas fa-times-circle close');
 	removeIcon.setAttribute('aria-hidden', 'true');
 	console.log(tableContainer.children);
+
 	removeIcon.addEventListener('click', ()=>{ // PB le total reste le même, le localStorage reste et donc actualiser page remet panier
-	  bodytable.removeChild(bodytable.children[i]);
+		console.log('macommande'+i.valueOf);
+		localStorage.removeItem('macommande'+i); // PB rapide message d'erreur dans console et nblignecommande pas actualisé
+		bodytable.removeChild(bodytable.children[i]);// supprime le DOM de l'article
+        location.reload();                          // actualisation de la page
+	    finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);// re-calcul du montant panier
 	})
 	finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);
 	bodytable.appendChild(tableContainer);
@@ -170,6 +176,7 @@ if (lastName = ''){
 }
 if (firstName = ''){
 	alert('prénom incorrect');
+
 } else {
 	console.log('prénom OK');
 }
@@ -196,7 +203,10 @@ removeCartBtn.addEventListener('click', () => {
 /* s'exécute après clic sur le bouton valider panier */
 submitBtn.addEventListener('click', buy, true);
 function buy() {
+	localStorage.setItem('firstname'+ parseInt(localStorage.getItem(firstName.children[2].textContent))); // PB ne récupère pas le prénom du form
+	console.log(localStorage.getItem('firstname'));
 	location.href='../html/confirmation.html'; // PB ne fonctionne pas, envoi pas vers page
+
 	}
 
 
