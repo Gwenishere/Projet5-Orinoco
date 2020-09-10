@@ -23,9 +23,9 @@ for(let i = 0; i < localStorage.getItem('nblignecommande') ; i++){
 		let tableContainer = document.createElement('tr');
 		tableContainer.className = 'table-container';
 		let tableBody = [];
-		for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){ // refaire avec parse ou string
+		for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){ // faire avec parse ou string
 			tableBody.push(document.createElement('td'));
-		    tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j]; // refaire avec parse		
+		    tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j]; // faire avec parse		
 			tableContainer.appendChild(tableBody[j]);
 			console.log(tableBody[j]); 
 // calcul du montant total de la commande         
@@ -39,10 +39,10 @@ for(let i = 0; i < localStorage.getItem('nblignecommande') ; i++){
 		console.log('macommande'+i.valueOf);
 		localStorage.removeItem('macommande'+i); // PB rapide message d'erreur dans console et nblignecommande pas actualisé
 		bodytable.removeChild(bodytable.children[i]);// supprime le DOM de l'article
-        location.reload();                          // actualisation de la page
+        location.reload(); // actualisation de la page
 	    finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);// re-calcul du montant panier
 		})
-		finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]); // refaire avec parse ou string
+		finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]); // faire avec parse ou string
 		bodytable.appendChild(tableContainer);
 	}
 }
