@@ -8,11 +8,10 @@ let contact = {};
 let products = [];
 for (let i = 0; i < localStorage.getItem('macommande').length; i++) {
 for (let j = 0; j < localStorage.getItem('macommande')['nblignecommande']; j++) {
-
-
+// ici que mettre pour récupérer et lier ?
+}
 }
 
-} // 
 let orderToSend = {}; 
 const tableCart = document.querySelector('#cart-table');
 const totalValue = document.querySelector('#total');
@@ -21,40 +20,38 @@ let finalPrice = 0;
 // boucles qui récupèrent panier 
 for(let i = 0; i < localStorage.getItem('nblignecommande') ; i++){
 	if (localStorage.getItem('macommande'+i) != undefined) {
-  let tableContainer = document.createElement('tr');
-	tableContainer.className = 'table-container';
-	let tableBody = [];
-	
-	for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){
-		 tableBody.push(document.createElement('td'));
-		 tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j];		
-		 tableContainer.appendChild(tableBody[j]);
-		 console.log(tableBody[j]); 
+		let tableContainer = document.createElement('tr');
+		tableContainer.className = 'table-container';
+		let tableBody = [];
+		for (let j = 0; j < localStorage.getItem('macommande'+i).split(',').length+1 ; j++){ // refaire avec parse ou string
+			tableBody.push(document.createElement('td'));
+		    tableBody[j].textContent = localStorage.getItem('macommande'+i).split(',')[j]; // refaire avec parse		
+			tableContainer.appendChild(tableBody[j]);
+			console.log(tableBody[j]); 
 // calcul du montant total de la commande         
-	}
-	let removeIcon = document.createElement('i');
-	tableBody[localStorage.getItem('macommande'+i).split(',').length].appendChild(removeIcon);
-	removeIcon.setAttribute('class', 'fas fa-times-circle close');
-	removeIcon.setAttribute('aria-hidden', 'true');
-	console.log(tableContainer.children);
-
-	removeIcon.addEventListener('click', ()=>{ // PB le total reste le même, le localStorage reste et donc actualiser page remet panier
+		}
+		let removeIcon = document.createElement('i');
+		tableBody[localStorage.getItem('macommande'+i).split(',').length].appendChild(removeIcon);
+	    removeIcon.setAttribute('class', 'fas fa-times-circle close');
+	    removeIcon.setAttribute('aria-hidden', 'true');
+		console.log(tableContainer.children);
+		removeIcon.addEventListener('click', ()=>{ // PB le total reste le même, le localStorage reste et donc actualiser page remet panier
 		console.log('macommande'+i.valueOf);
 		localStorage.removeItem('macommande'+i); // PB rapide message d'erreur dans console et nblignecommande pas actualisé
 		bodytable.removeChild(bodytable.children[i]);// supprime le DOM de l'article
         location.reload();                          // actualisation de la page
 	    finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);// re-calcul du montant panier
-	})
-	finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]);
-	bodytable.appendChild(tableContainer);
-}
+		})
+		finalPrice += parseInt(localStorage.getItem('macommande'+i).split(',')[4]); // refaire avec parse ou string
+		bodytable.appendChild(tableContainer);
+	}
 }
 displayTotal.textContent = finalPrice;
 if (finalPrice === 0){  // si panier vide, alors alert message panier vide
 	alert('votre panier est vide');
 } else {
-console.log('montant total du panier = ' + finalPrice);
-console.log(localStorage);
+	console.log('montant total du panier = ' + finalPrice);
+    console.log(localStorage);
 }
 // Formulaire
 let orderForm = document.createElement('form');
