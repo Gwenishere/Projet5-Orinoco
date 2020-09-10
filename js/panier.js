@@ -4,9 +4,16 @@ let pageHeader = document.createElement('header');
 let pageHeaderTitle = document.createElement('a');
 let pageHeaderImg = document.createElement('img');
 
-let tableStructure = "";
 let contact = {};
+let products = [];
+for (let i = 0; i < localStorage.getItem('macommande').length; i++) {
+for (let j = 0; j < localStorage.getItem('macommande')['nblignecommande']; j++) {
 
+
+}
+
+} // 
+let orderToSend = {}; 
 const tableCart = document.querySelector('#cart-table');
 const totalValue = document.querySelector('#total');
 // déclarer somme totale
@@ -47,6 +54,7 @@ if (finalPrice === 0){  // si panier vide, alors alert message panier vide
 	alert('votre panier est vide');
 } else {
 console.log('montant total du panier = ' + finalPrice);
+console.log(localStorage);
 }
 // Formulaire
 let orderForm = document.createElement('form');
@@ -68,6 +76,7 @@ let address = document.createElement('input');
 let formCityCell = document.createElement('div');
 let formCityLabel = document.createElement('label');
 let city = document.createElement('input');
+// footer
 let pageFooter = document.createElement('footer');
 let pageFooterDiv = document.createElement('div');
 let pageFooterText = document.createElement('p');
@@ -164,10 +173,12 @@ firstName.id = 'first_name';
 email.id = 'email';
 address.id = 'address';
 city.id = 'city';
-submitBtn.id = 'buy'
+submitBtn.id = 'order'
 // Class
 removeCartBtn.className = 'btn-danger';
 submitBtn.className = 'btn-purchase';
+// à envoyer vers confirmation si je veux reprendre le prénom
+console.log(orderForm.children[3].textContent);
 // vérifier si contenu dans formulaire
 if (lastName = ''){
 	alert('nom incorrect');
@@ -200,19 +211,42 @@ removeCartBtn.addEventListener('click', () => {
 	localStorage.clear();
 	location.reload();
 })
-/* s'exécute après clic sur le bouton valider panier */
-submitBtn.addEventListener('click', buy, true);
-function buy() {
-	localStorage.setItem('firstname'+ parseInt(localStorage.getItem(firstName.children[2].textContent))); // PB ne récupère pas le prénom du form
-	console.log(localStorage.getItem('firstname'));
-	location.href='../html/confirmation.html'; // PB ne fonctionne pas, envoi pas vers page
-
+// s'exécute après clic sur le bouton valider panier 
+submitBtn.addEventListener('click', function(event){
+	event.preventDefault();
+	const urlApi = 'http://localhost:3000/api/furniture/order';
+	let contact = {
+		lastName: lastName.value,
+        firstName: firstName.value,
+        email: email.value,
+        address: address.value,
+		city: city.value
 	}
+	orderToSend = {
+		contact, // type de données
+		products
+	}
+	let postFetch =  { 
+		method: 'POST',
+		body: JSON.stringify(orderToSend), 
+        headers: {
+			'Content-type': 'application/json'  
+		}   
+	};
+	fetch(urlApi, postFetch)
+    .then(response => response.json())
+    .then(function (order) {
+		let orderConfirmed = {
+            name: contact.lastName + " " + contact.firstName,
+            price: finalPrice,
+			orderId: order.orderId
+		}
+		let orderStorage = localStorage.setItem('clientOrder', JSON.stringify(orderConfirmed))
+		window.location = "../html/confirmation.html"
+    })
+})	
 
 
 
-// formulaire récupération
-
-// fonctions, écoute, controler formulaire
 
 
