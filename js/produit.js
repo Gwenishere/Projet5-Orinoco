@@ -1,61 +1,41 @@
-let b = document.body
-let pageHeader = document.createElement('header')
-let pageHeaderContainer = document.createElement('div')
-let pageHeaderElement = document.createElement('div')
-let pageHeaderLink = document.createElement('a')
-let pageHeaderLogo = document.createElement('img')
-let pageHeaderTitle = document.createElement('h1')
-let cardSection = document.createElement('main')
-let sectionTitle = document.createElement('h2')
-let pageFooter = document.createElement('footer')
-let pageFooterDiv = document.createElement('div')
-let pageFooterText = document.createElement('p')
+const b = document.body
+const cardSection = document.createElement('main')
+const sectionTitle = document.createElement('h2')
+const pageFooter = document.createElement('footer')
+const pageFooterDiv = document.createElement('div')
+const pageFooterText = document.createElement('p')
 // noeuds
-document.body.prepend(pageHeader)
-pageHeader.prepend(pageHeaderContainer)
-pageHeaderContainer.prepend(pageHeaderElement)
-pageHeaderElement.prepend(pageHeaderLink)
-pageHeaderLink.prepend(pageHeaderLogo)
-pageHeaderElement.append(pageHeaderTitle)
 b.appendChild(cardSection)
 cardSection.prepend(sectionTitle)
 document.body.appendChild(pageFooter)
 pageFooter.prepend(pageFooterDiv)
 pageFooterDiv.prepend(pageFooterText)
 // contenu
-pageHeaderLogo.src = '../img/banniere.png'
-pageHeaderTitle.textContent = "Des meubles d'exception"
 sectionTitle.textContent = 'Voici le produit que vous avez sélectionné'
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
-// attribut
-pageHeaderLink.setAttribute('href', '../html/main.html')
-pageHeaderLogo.setAttribute('alt', 'logo orinoco caddie')
 // class
 cardSection.className = 'container'
-// id
-pageHeaderContainer.id = 'titre_principal'
-pageHeaderElement.id = 'logo'
 // requete
 fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then(response =>
   response.json()).then(response => {
 // création des éléments
-  let productDiv = document.createElement('div')
-  let productTitle = document.createElement('h3')
-  let productPicture = document.createElement('img')
-  let productId = document.createElement('figcaption')
-  let productDescription = document.createElement('p')
-  let productList = document.createElement('select')
-  let productListLabel = document.createElement('label')
-  let productListOption = []
-  let productQuantity = document.createElement('div')
-  let quantityText = document.createElement('p')
-  let quantityInputs = document.createElement('input')
-  let priceElement = document.createElement('div')
-  let priceText = document.createElement('p')
-  let priceAmount = document.createElement('p')
-  let cartButtons = document.createElement('div')
-  let addToCartButton = document.createElement('button')
-  let returnButton = document.createElement('a')
+  const productDiv = document.createElement('div')
+  const productTitle = document.createElement('h3')
+  const productPicture = document.createElement('img')
+  const productId = document.createElement('figcaption')
+  const productDescription = document.createElement('p')
+  const productList = document.createElement('select')
+  const productListLabel = document.createElement('label')
+  const productListOption = []
+  const productQuantity = document.createElement('div')
+  const quantityText = document.createElement('p')
+  const quantityInputs = document.createElement('input')
+  const priceElement = document.createElement('div')
+  const priceText = document.createElement('p')
+  const priceAmount = document.createElement('p')
+  const cartButtons = document.createElement('div')
+  const addToCartButton = document.createElement('button')
+  const returnButton = document.createElement('a')
   // création des noeuds, arbre
   cardSection.appendChild(productDiv)
   productDiv.appendChild(productTitle)
@@ -103,7 +83,6 @@ fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then
   returnButton.className = 'return-landing-page'
   // id
   productList.id = 'vernis'
-
   // click
   addToCartButton.addEventListener('click', () => { addTo() })
   returnButton.addEventListener('click', () => { returnTo() })
@@ -128,12 +107,13 @@ fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then
       msgAlert.textContent = +quantityInputs.value + ' ' + response.name + ' ' + ' ajouté.s à votre panier. Merci !'
       productDiv.appendChild(msgAlert)
       priceAmount.textContent = ((response.price / 100) * (+quantityInputs.value)) + '€'
-      localStorage.setItem('nblignecommande', parseInt(localStorage.getItem('nblignecommande'))?parseInt(localStorage.getItem('nblignecommande')) + 1:1)
-      localStorage.setItem('macommande' + '' + (parseInt(localStorage.getItem('nblignecommande')) -1), [response._id, response.name, productList.value, quantityInputs.value, quantityInputs.value * response.price / 100])
+      localStorage.setItem('nblignecommande',parseInt(localStorage.getItem('nblignecommande'))?parseInt(localStorage.getItem('nblignecommande'))+1:1);
+      // -------------PB ajout JSON.stringify ligne ci-dessous est-ce ok ? -----------------------------------
+      localStorage.setItem('macommande'+ '' + JSON.stringify(parseInt(localStorage.getItem('nblignecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,quantityInputs.value*response.price/100]);
       location.href = '../html/panier.html'
     }
     function returnTo () {
-      localStorage.setItem('macommande', [response._id, response.name, productList.value, quantityInputs.value, response.price / 100])
+      localStorage.setItem('macommande', JSON.stringify[response._id, response.name, productList.value, quantityInputs.value, response.price / 100])
     }
   }
 })

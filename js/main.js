@@ -1,51 +1,28 @@
-let b = document.body
-let pageHeader = document.createElement('header')
-let pageHeaderContainer = document.createElement('div')
-let pageHeaderElement = document.createElement('div')
-let pageHeaderLink = document.createElement('a')
-let pageHeaderLogo = document.createElement('img')
-let pageHeaderTitle = document.createElement('h1')
-let cardSection = document.createElement('main')
-let cartSumUpTitle = document.createElement('h2')
-let pageFooter = document.createElement('footer')
-let pageFooterDiv = document.createElement('div')
-let pageFooterText = document.createElement('p')
-// noeuds
-document.body.prepend(pageHeader)
-pageHeader.prepend(pageHeaderContainer)
-pageHeaderContainer.prepend(pageHeaderElement)
-pageHeaderElement.prepend(pageHeaderLink)
-pageHeaderLink.prepend(pageHeaderLogo)
-pageHeaderElement.append(pageHeaderTitle)
+const b = document.body
+const cardSection = document.createElement('main')
+cardSection.className = 'container'
 b.appendChild(cardSection)
-cardSection.prepend(cartSumUpTitle)
+
+// Footer
+const pageFooter = document.createElement('footer')
+const pageFooterDiv = document.createElement('div')
+const pageFooterText = document.createElement('p')
 document.body.appendChild(pageFooter)
 pageFooter.prepend(pageFooterDiv)
 pageFooterDiv.prepend(pageFooterText)
-// contenu
-pageHeaderLogo.src = '../img/banniere.png'
-pageHeaderTitle.textContent = "Des meubles d'exception"
-cartSumUpTitle.textContent = 'Nos meubles sont réalisés à partir de bois issus de forêts gérées durablement'
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
-// attribut
-pageHeaderLink.setAttribute('href', '../html/main.html')
-pageHeaderLogo.setAttribute('alt', 'logo orinoco caddie')
-// class
-cardSection.className = 'container'
-// id
-pageHeaderContainer.id = 'titre_principal'
-pageHeaderElement.id = 'logo';
+
 // utilisation d'une fonction then pour exécuter du code, c'est une promesse
-fetch('http://localhost:3000/api/furniture').then(response =>
-  response.json()).then(response =>
-{
-  let productDiv = [] // pour reprendre plus tard dans for, je détermine les données, leurs noms
-  let productTitle = []
-  let productPicture = []
-  let productId = []
-  let productDescription = []
-  let productPrice = []
-  let productMoreLink = []
+const url = 'http://localhost:3000/api/furniture'
+fetch(url).then(response =>
+  response.json()).then(response => {
+  const productDiv = [] // pour reprendre plus tard dans for, je détermine les données, leurs noms
+  const productTitle = []
+  const productPicture = []
+  const productId = []
+  const productDescription = []
+  const productPrice = []
+  const productMoreLink = []
   for (var i = 0; i < response.length; i++) {
     productDiv.push(document.createElement('div')) // création des éléments
     productTitle.push(document.createElement('h3'))
@@ -71,10 +48,15 @@ fetch('http://localhost:3000/api/furniture').then(response =>
     productMoreLink[i].setAttribute('href', '../html/produit.html')
     productDiv[i].className = 'element' // class
     productMoreLink[i].className = 'buttonShow'
-    let buttonLink = response[i]._id // click et prends le lien de l'id unique
+    const buttonLink = response[i]._id // click et prends le lien de l'id unique
+
     productMoreLink[i].addEventListener('click', () => {
     localStorage.setItem('id', buttonLink)
     })
+
     myCart = localStorage.getItem('macommande')
   }
 })
+  .catch(function (error) {
+    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message)
+  })

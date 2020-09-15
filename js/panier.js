@@ -1,31 +1,31 @@
-// DOM page et header
-let b = document.body;
-let pageHeader = document.createElement('header')
-let pageHeaderTitle = document.createElement('a')
-let pageHeaderImg = document.createElement('img')
+// DOM
+const b = document.body
 
-let contact = {}
-let products = []
-for (let i = 0; i < localStorage.getItem('macommande').length; i++) {
-  for (let j = 0; j < localStorage.getItem('macommande').length('nblignecommande'); j++) {
+const contact = {}
+const products = []
+const productList = []
+for (let i = 0; i < localStorage.getItem('macommande'); i++) {
+  for (let j = 0; j < JSON.parse(localStorage.getItem('macommande' + i))('nblignecommande').length; j++) {
   // ici que mettre pour récupérer et lier?
+    productList.push(JSON.parse(localStorage.getItem('macommande' + i))._id)
+    console.log(productList)
   }
 }
-let orderToSend = {}
 
 // déclarer somme totale
 let finalPrice = 0
 // boucles qui récupèrent panier
 for (let i = 0; i < localStorage.getItem('nblignecommande'); i++) {
-  if (localStorage.getItem('macommande' + i) !== undefined) {
+  if (localStorage.getItem('macommande' + i) != undefined) {
     let tableContainer = document.createElement('tr')
     tableContainer.className = 'table-container'
     let tableBody = []
+    console.log(localStorage.getItem('macommande'))
     for (let j = 0; j < localStorage.getItem('macommande' + i).split(',').length + 1; j++) { // faire avec parse ou string
       tableBody.push(document.createElement('td'))
       tableBody[j].textContent = localStorage.getItem('macommande' + i).split(',')[j] // faire avec parse
       tableContainer.appendChild(tableBody[j])
-      console.log(tableBody[j])
+ //     console.log(tableBody[j])
     }
     let removeIcon = document.createElement('i')// calcul du montant total de la commande
     tableBody[localStorage.getItem('macommande' + i).split(',').length].appendChild(removeIcon)
@@ -70,20 +70,12 @@ let formAddressLabel = document.createElement('label')
 let address = document.createElement('input')
 let formCityCell = document.createElement('div')
 let formCityLabel = document.createElement('label')
-let city = document.createElement('input');
-// footer
-let pageFooter = document.createElement('footer')
-let pageFooterDiv = document.createElement('div')
-let pageFooterText = document.createElement('p')
+let city = document.createElement('input')
 // bouton valider commande lié au formulaire et tableau
 let submitBtn = document.createElement('input')
 // bouton supprimer commande lié au tableau ou formulaire ou les deux ?
 let cartButtons = document.createElement('div')
 let removeCartBtn = document.createElement('button')
-// DOM Header
-document.body.prepend(pageHeader)
-pageHeader.prepend(pageHeaderTitle)
-pageHeaderTitle.prepend(pageHeaderImg)
 // DOM Form
 document.body.appendChild(orderForm)
 orderForm.prepend(formTitle)
@@ -108,15 +100,7 @@ formCityCell.appendChild(city)
 orderForm.appendChild(cartButtons)
 cartButtons.appendChild(submitBtn)
 cartButtons.appendChild(removeCartBtn)
-// DOM Footer
-document.body.appendChild(pageFooter)
-pageFooter.prepend(pageFooterDiv)
-pageFooterDiv.prepend(pageFooterText)
-// Footer contenu
-pageHeaderImg.src = '../img/banniere.png'
-pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
 // Attributs formulaire
-pageHeaderTitle.setAttribute('href', '../html/main.html')
 orderForm.setAttribute('method', 'post')
 orderForm.setAttribute('autocomplete', 'off')
 orderForm.setAttribute('name', 'form')
@@ -171,6 +155,14 @@ submitBtn.id = 'order'
 // Class
 removeCartBtn.className = 'btn-danger'
 submitBtn.className = 'btn-purchase'
+// Footer
+const pageFooter = document.createElement('footer')
+const pageFooterDiv = document.createElement('div')
+const pageFooterText = document.createElement('p')
+document.body.appendChild(pageFooter)
+pageFooter.prepend(pageFooterDiv)
+pageFooterDiv.prepend(pageFooterText)
+pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
 // à envoyer vers confirmation si je veux reprendre le prénom
 console.log(orderForm.children[3].textContent)
 // vérifier si contenu dans formulaire
@@ -192,8 +184,8 @@ submitBtn.addEventListener('click', function (event) {
     city: city.value
   }
   orderToSend = {
-    contact, // type de données
-    products
+    contact: contact, // type de données
+    products: productList
   }
   let postFetch = {
     method: 'POST',
@@ -201,12 +193,13 @@ submitBtn.addEventListener('click', function (event) {
     headers: {
       'Content-type': 'application/json'
     }
-  };
-	fetch(urlApi, postFetch)
+  }
+  fetch(urlApi, postFetch)
     .then(response => response.json())
     .then(function (order) {
       let orderConfirmed = {
-        name: contact.lastName + ' ' + contact.firstName,
+        lastName: contact.lastName,
+        firstName: contact.firstName,
         price: finalPrice,
         orderId: order.orderId
       }
