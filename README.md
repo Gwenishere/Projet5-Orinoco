@@ -1,6 +1,10 @@
-# Orinoco #
+# Réaliser un MVC (Modèle Vue Controleur) d'un site e-commerce nommé ORINOCO #
 
-This is the back end server for Project 5 of the Junior Web Developer path.
+Dans le cadre du projet 5 du diplome Développeur Web
+
+Front-end à réaliser en HTML, CSS, et JS
+
+Back-end remis, ci-dessous les instructions
 
 ### Prerequisites ###
 
