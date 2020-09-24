@@ -12,10 +12,19 @@ pageFooter.prepend(pageFooterDiv)
 pageFooterDiv.prepend(pageFooterText)
 pageFooterText.textContent = '💻 Site créé en juillet 2020 par Orinoco - 29 avenue des Peupliers 35510 Cesson-Sévigné'
 
+console.log(this)
 // utilisation d'une fonction then pour exécuter du code, c'est une promesse
-const url = 'http://localhost:3000/api/furniture'
+const url = 'http://localhost:3000/api/furniture/'
 fetch(url).then(response =>
   response.json()).then(response => {
+// Test status //
+  if (response.status === 200) { // if HTTP-status is 200-299
+  // get the response body (the method explained below)
+    console.log(response.status)
+  } else {
+    console.log('HTTP-Error: ' + response.status)
+  }
+  console.log(response.status)
   const productDiv = [] // pour reprendre plus tard dans for, je détermine les données, leurs noms
   const productTitle = []
   const productPicture = []
@@ -51,12 +60,11 @@ fetch(url).then(response =>
     const buttonLink = response[i]._id // click et prends le lien de l'id unique
 
     productMoreLink[i].addEventListener('click', () => {
-    localStorage.setItem('id', buttonLink)
+      localStorage.setItem('id', buttonLink)
     })
 
     myCart = localStorage.getItem('macommande')
   }
+}).catch(function (error) {
+  console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message)
 })
-  .catch(function (error) {
-    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message)
-  })

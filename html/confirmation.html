@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Orinoco, société spécialisée en vente en ligne.
@@ -36,19 +37,22 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="../html/main.html"><i class="fas fa-chair"></i> Meubles </a>
             <a class="nav-item nav-link active" href="../html/panier.html"><i class="fas fa-shopping-basket"></i>Mon panier</a>
-            <a class="nav-item nav-link active" href="#"><i class="far fa-user"></i>Mon compte</a>
-            <a class="nav-item nav-link active" href="#" ><i class="far fa-question-circle"></i>A propos</a>
           </div>
         </div>
       </nav>
-          <main id="message" class="m-3">
-            <h1>Confirmation de votre commande</h1>
-            <h2 id="thanks">Merci chèr.e <span id="username"></span>!</h1>
-            <p id="orderId"></p>
-            <p>Vous allez bientôt recevoir le numéro de suivi et le récapitulatif par mail.</p>
+          <main id="message" class="container">
+            <div class="element">
+              <h2>Confirmation de votre commande</h2>
+              <h3 id="thanks"><i class="far fa-smile"></i> Merci  <span id="firstName"></span>!</h3>
+              <div id="fillMsg"></div>
+              <p id="orderIdText">Votre numéro de commande est : <span id="orderId"></span></p>
+              <p id="priceMsg">Montant total de votre achat : <span id=priceValue></span> €</p>
+              <p id="confirmMsg">Vous allez bientôt recevoir le numéro de suivi et le récapitulatif par mail.</p>
+            </div>
+            <button onclick="window.print()">Imprimer la confirmation</button>
          </main>
   
     
-        <script src="../js/confirmation.js"></script>
+        <script src="../js/confirmation.js" defer></script>
     </body>
 </html>

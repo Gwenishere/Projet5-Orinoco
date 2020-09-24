@@ -101,14 +101,21 @@ fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then
       localStorage.setItem('type-vernis', productList.value)
     }
     vernis.addEventListener('change', setVernis)
-    // message et calcul du montant total et local Storage que je vais récupérer dans panier.js
+    // message et calcul du montant total et local Storage que je vais récupérer dans panier.js //
     function addTo () {
       let msgAlert = document.createElement('p')
-      msgAlert.textContent = +quantityInputs.value + ' ' + response.name + ' ' + ' ajouté.s à votre panier. Merci !'
+      // test call-to-action et input //
+      console.log('nombre de produit :' + quantityInputs.value)
+      try {
+        if(quantityInputs.value == '') throw console.log('input vide')
+      } catch(err) {
+        console.log('input est : ' + err)
+      }
+      // fin du test //
+      msgAlert.textContent = +quantityInputs.value + " " + response.name + ' ' + ' ajouté.s à votre panier'
       productDiv.appendChild(msgAlert)
       priceAmount.textContent = ((response.price / 100) * (+quantityInputs.value)) + '€'
       localStorage.setItem('nblignecommande',parseInt(localStorage.getItem('nblignecommande'))?parseInt(localStorage.getItem('nblignecommande'))+1:1);
-      // -------------PB ajout JSON.stringify ligne ci-dessous est-ce ok ? -----------------------------------
       localStorage.setItem('macommande'+ '' + JSON.stringify(parseInt(localStorage.getItem('nblignecommande'))-1),[response._id,response.name,productList.value,quantityInputs.value,quantityInputs.value*response.price/100]);
       location.href = '../html/panier.html'
     }
@@ -116,4 +123,4 @@ fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then
       localStorage.setItem('macommande', JSON.stringify[response._id, response.name, productList.value, quantityInputs.value, response.price / 100])
     }
   }
-})
+}).catch(error => { console.error(error) })
