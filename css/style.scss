@@ -1,6 +1,8 @@
+/*Police*/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
-
+/*raccourcis mise en page*/
+$colorBack: rgb(204, 183, 174);
+$colorBackButton:  rgb(78, 74, 76);
 
 body {
     font-family: 'Lato', sans-serif;
@@ -9,42 +11,34 @@ body {
 	border: 0;
 }
 header {
-    background-color:rgb(204, 183, 174);
+    background-color: $colorBack;
     padding-bottom: 20px;
     margin: 0;
-    width: 100%;
-    
+    img {
+       width: auto;
+       height: auto;
+    }
 }
-header img {
- width: auto;
- height: auto;
-}
-
-
 h1 {
     margin: 0 0 0 30px;
 }
-
 h2 {
     text-align: center;
     margin-bottom: 30px;
 }
-/*Reset CSS*/
 *{
     margin: 0px;
     padding: 0px;
     font-family: 'Lato', sans-serif;
 }
-
 a {
     text-decoration: none;
+    :hover {
+       font-weight: bold;
+       font-size: larger;
+       text-decoration: none;
+    }
 }
-a:hover {
-    font-weight: bold;
-    font-size: larger;
-    text-decoration: none;
-}
-
 .conteneur-contenu{
   margin: 50px 20px;
   height: 1500px;
@@ -57,10 +51,10 @@ img {
 .photo {
     overflow: hidden;
     transition: transform .5s ease;
-}
-.photo:hover {
-    transform: scale(1.5);
-    cursor: zoom-in;
+    :hover {
+       transform: scale(1.5);
+       cursor: zoom-in;
+    }
 }
 p {
     margin-bottom: 30px;
@@ -70,24 +64,22 @@ p {
     margin: auto;
     margin-top: 60px;
     margin-bottom: 30px;
-    width: 60%;
-  }
+}
 .element {
     margin-bottom: 30px!important;
     margin: auto;
     padding: 10px;
     text-align: center;
-    width: 60%;
-    box-shadow: 2px 3px 3px 2px rgb(204, 183, 174);
+    width: 450px;
+    box-shadow: 2px 3px 3px 2px $colorBack;
     border-radius: 3px;
+    :hover {
+        border: 1px solid #777; 
+    }
 }
- .element:hover {
-    border: 1px solid #777; 
- }
-
 .buttonShow {
-    background-color: rgb(204, 183, 174);
-    color: rgb(78, 74, 76);
+    background-color: $colorBack;
+    color: $colorBackButton;
     font-size: 15px;
     padding: 10px 24px;
     border: none;
@@ -96,40 +88,37 @@ p {
     display: inline-block;
     margin: 8px 2px;
     cursor: pointer;
-  }
-.buttonShow:hover {
-    border: 1px solid #777;
+    :hover {
+        border: 1px solid #777;
+        text-decoration: none;
+    }
 }
- 
 footer {
     font-size: 14px;
     margin: 0;
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: rgb(204, 183, 174);
+    background-color: $colorBack;
+    div {
+        text-align: center;
+        background-color: $colorBack;
+    }
+    p {
+       margin-bottom: 0;
+    }
 }
-footer div {
-    text-align: center;
-}
-
-footer p {
-    margin-bottom: 0;
-}
-  
-
 
 /*produits boutons plus et moins*/
-
 .quantity {
     padding-top: 20px;
     margin-bottom: 30px;
-  }
+}
   .cart-quantity-input {
     height: 40px;
     width: 50px;
     border-radius: 5px;
-    border: 1px solid rgb(78, 74, 76);
+    border: 1px solid $colorBackButton;
     background-color: #eee;
     color: #333;
     padding: 0;
@@ -143,17 +132,19 @@ footer p {
     justify-content: space-between;
     flex-direction: row;
 }
-
   button[class*=btn] {
     border: none;
     cursor: pointer;
-  }
+}
 button:hover {
-    background-color: rgb(78, 74, 76); 
+    background-color: $colorBackButton; 
     color: white;
     font-weight: bold;
   }
 
+  .btn-success {
+      margin-right: 20px;
+  }
   /*retourner*/
 .return-landing-page {
     padding: 8px 12px;
@@ -165,11 +156,12 @@ button:hover {
     cursor: pointer;
     margin: 40px auto 80px auto;
     text-align: center; 
+    :hover {
+        background-color: $colorBackButton;
+        color: white;
+    }
 }
-.return-landing-page:hover {
-background-color: rgb(78, 74, 76);
-color: white;
-}
+
 /*ajouter*/
 .shop-item-button {
     margin: 40px auto 80px auto;
@@ -182,71 +174,17 @@ color: white;
     display: inline-block;
 }
 .shop-item-button:hover {
-    background-color: rgb(78, 74, 76);
-    color: white;
-}
-/*enlever*/
-.btn-danger {
-    width: 50%;
-    color: #43484D;
-    background-color: #ec8686;
-    border: none;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px auto 20px auto;
-    padding: 8px 12px;
-    display: block;
-    cursor: pointer;
-}
-
-/*acheter*/
-.btn-purchase {
-    width: 50%;
-    padding: 8px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    background-color: rgb(61, 183, 231);
-    color: #43484D;
-    font-weight: bold;
-    font-size: 15px;
-    display: block;
-    cursor: pointer;
-    margin: 10px auto 20px auto;
-    text-align: center;
-  
-}
-.btn-purchase:hover {
-    background-color: rgb(78, 74, 76);
+    background-color: $colorBackButton;
     color: white;
 }
 
 /*panier*/
-
 
 #body-table {
     margin: 10px auto;
     padding: 10px 20px; 
 }
 
-
-/*@media (max-width: 700px){
-    th {
-    display: none;
-    }
-    tr {
-        display: block;
-        margin-bottom: 40px;
-    }
-    td {
-        display: block;
-        text-align: right;
-    }
-    td::before {
-        content: attr(data-label);
-        float: left;
-    }
-}
 /*formulaire*/
 :required::placeholder
 {
@@ -276,4 +214,17 @@ input[type="email"]
 
   margin-bottom: 30px;
   box-sizing: border-box;
+}
+
+/*Responsive*/
+@media (max-width: 767px) {
+ .element {
+    width: 90%;
+}
+  .shop-buttons {
+    justify-content: space-between;
+  }
+  footer {
+    font-size: 90%;  
+  }
 }

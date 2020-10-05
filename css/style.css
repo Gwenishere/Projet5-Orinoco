@@ -1,3 +1,4 @@
+/*Police*/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 body {
   font-family: 'Lato', sans-serif;
@@ -5,29 +6,22 @@ body {
   padding: 0;
   border: 0;
 }
-
 header {
   background-color: #ccb7ae;
   padding-bottom: 20px;
-  margin: 0;
-  width: 100%;
 }
-
 header img {
   width: auto;
   height: auto;
 }
-
 h1 {
   margin: 0 0 0 30px;
 }
-
 h2 {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/*Reset CSS*/
 * {
   margin: 0px;
   padding: 0px;
@@ -54,7 +48,7 @@ img {
   width: 200px;
   margin: 30px;
 }
-
+/* zoom*/
 .photo {
   overflow: hidden;
   -webkit-transition: -webkit-transform .5s ease;
@@ -62,7 +56,6 @@ img {
   transition: transform .5s ease;
   transition: transform .5s ease, -webkit-transform .5s ease;
 }
-
 .photo:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
@@ -79,7 +72,6 @@ p {
   margin: auto;
   margin-top: 60px;
   margin-bottom: 30px;
-  width: 60%;
 }
 
 .element {
@@ -125,6 +117,7 @@ footer {
 
 footer div {
   text-align: center;
+  background-color: #ccb7ae;
 }
 
 footer p {
@@ -168,11 +161,13 @@ button[class*=btn] {
   border: none;
   cursor: pointer;
 }
-
 button:hover {
   background-color: #4e4a4c;
   color: white;
   font-weight: bold;
+}
+.btn-success {
+    margin-right: 20px;
 }
 
 /*retourner*/
@@ -187,7 +182,6 @@ button:hover {
   margin: 40px auto 80px auto;
   text-align: center;
 }
-
 .return-landing-page:hover {
   background-color: #4e4a4c;
   color: white;
@@ -210,65 +204,12 @@ button:hover {
   color: white;
 }
 
-/*enlever*/
-.btn-danger {
-  width: 50%;
-  color: #43484D;
-  background-color: #ec8686;
-  border: none;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 10px auto 20px auto;
-  padding: 8px 12px;
-  display: block;
-  cursor: pointer;
-}
-
-/*acheter*/
-.btn-purchase {
-  width: 50%;
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-decoration: none;
-  background-color: #3db7e7;
-  color: #43484D;
-  font-weight: bold;
-  font-size: 15px;
-  display: block;
-  cursor: pointer;
-  margin: 10px auto 20px auto;
-  text-align: center;
-}
-
-.btn-purchase:hover {
-  background-color: #4e4a4c;
-  color: white;
-}
-
 /*panier*/
 #body-table {
   margin: 10px auto;
   padding: 10px 20px;
 }
 
-/*@media (max-width: 700px){
-    th {
-    display: none;
-    }
-    tr {
-        display: block;
-        margin-bottom: 40px;
-    }
-    td {
-        display: block;
-        text-align: right;
-    }
-    td::before {
-        content: attr(data-label);
-        float: left;
-    }
-}
 /*formulaire*/
 :required::-webkit-input-placeholder {
   color: #ff5100;
@@ -311,4 +252,20 @@ input[type="email"] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+/*Responsive*/
+@media (max-width: 767px) {
+    .element {
+      width: 90%;
+    }
+    .shop-buttons {
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+    }
+    footer {
+      font-size: 90%;
+    }
+}
+
 /*# sourceMappingURL=style.css.map */
