@@ -157,6 +157,7 @@ removeCartBtn.setAttribute('class', 'btn btn-danger btn-lg')
 submitBtn.setAttribute('href', '../html/confirmation.html')
 submitBtn.setAttribute('type', 'submit')
 submitBtn.setAttribute('value', 'Valider la commande')
+submitBtn.setAttribute('class', 'btn btn-success btn-lg')
 // Contenus formulaire et boutons
 formTitle.textContent = 'Veuillez compléter le formulaire ci-dessous'
 formNameMailTitle.textContent = 'Vos coordonnées : '
@@ -166,7 +167,8 @@ formEmailLabel.textContent = 'Email'
 formAddressLabel.textContent = 'Adresse (espace, sans virgule) '
 formCityLabel.textContent = 'Ville'
 formAddressTitle.textContent = 'Votre adresse : '
-removeCartBtn.textContent = 'Vider le panier'
+submitBtn.textContent = 'Valider commande'
+removeCartBtn.textContent = 'Vider panier'
 orderForm.id = 'orderForm'
 lastName.id = 'last_name'
 firstName.id = 'first_name'
@@ -184,8 +186,7 @@ email.className = 'form-control'
 emailError.className = 'error'
 address.className = 'form-control'
 city.className = 'form-control'
-removeCartBtn.className = 'btn-danger'
-submitBtn.className = 'btn-purchase'
+
 // Footer
 const pageFooter = document.createElement('footer')
 const pageFooterDiv = document.createElement('div')

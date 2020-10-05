@@ -69,7 +69,7 @@ fetch ('http://localhost:3000/api/furniture/' + localStorage.getItem('id')).then
   productListLabel.setAttribute('for', 'vernis')
   quantityInputs.setAttribute('type', 'number')
   quantityInputs.setAttribute('value', 1)
-  quantityInputs.setAttribute('min', 0)
+  quantityInputs.setAttribute('min', 1)
   returnButton.setAttribute('href', '../html/main.html')
   addToCartButton.setAttribute('value', 'Add')
   // class
