@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,17 +32,16 @@
         </header>
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="#">Menu</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-1" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse navbar-1 special-dropdown-nav" >
-            <ul class="site-navigation nav navbar-nav">
-              <li><a class="nav-item nav-link active" href="../html/main.html"><i class="fas fa-chair"></i>Meubles </a></li>
-              <li><a class="nav-item nav-link active" href="../html/panier.html"><i class="fas fa-shopping-basket"></i>Mon panier</a></li>
-            </ul>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link active" href="../html/main.html"><i class="fas fa-chair"></i> Meubles </a>
+              <a class="nav-item nav-link active" href="../html/panier.html"><i class="fas fa-shopping-basket"></i>Mon panier</a>
+            </div>
           </div>
         </nav>
-
     <main class="container">
       <div id="table" class="table-responsive">
         <h2>Récapitulatif de votre commande</h2>
@@ -62,7 +61,8 @@
               </tbody>                
               <tfoot id="cart-total">
                   <td colspan="6">
-                  TOTAL : <span id="displayTotal"></span>€</td>
+                  TOTAL : <span id="displayTotal"></span>€
+                  </td>
               </tfoot>
           </table>
       </div>
